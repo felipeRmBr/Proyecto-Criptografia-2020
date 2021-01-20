@@ -30,22 +30,22 @@
     <div class="checks-group cifrado_y_firma"> 
         <label> 
             <input type="checkbox" name="colorCheckbox" 
-                   value="SIMMETRIC_KEY" checked required> descifrar</label> 
+                   value="DESCIFRAR_CHECK" checked required> descifrar</label> 
         <label> 
             <input type="checkbox" name="colorCheckbox" 
-                   value="PUBLIC_KEY" checked required> verificar</label> 
+                   value="VERIFICAR_CHECK" checked required> verificar</label> 
     </div> 
 
     <div class="ARCHIVO"> 
         <form class="box">
         <div class="box__input">
             <input type="file" name="files[]" id="file_1" class="box__file" data-multiple-caption="{count} files selected" multiple />
-            <label for="file_1"><span class="box__dragndrop">Cargar </span><strong> archivo cifrado</strong>.</label>
+            <label for="file_1" id = 'label_archivo'><span class="box__dragndrop">Cargar </span><strong>archivo cifrado</strong>.</label>
         </div>
         </form>
     </div> 
 
-    <div class="SIMMETRIC_KEY selectt"> 
+    <div class="DESCIFRAR_CHECK selectt"> 
         <form class="box">
         <div class="box__input">
             <input type="file" name="files[]" id="file_2" class="box__file" data-multiple-caption="{count} files selected" multiple />
@@ -54,7 +54,7 @@
         </form>
     </div> 
 
-    <div class="PUBLIC_KEY selectt">
+    <div class="VERIFICAR_CHECK selectt">
         <form class="box">
         <div class="box__input">
             <input type="file" name="files[]" id="file_3" class="box__file" data-multiple-caption="{count} files selected" multiple />
