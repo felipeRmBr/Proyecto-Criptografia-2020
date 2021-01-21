@@ -18,6 +18,11 @@ body
     margin: 0 auto;
 }
 
+.checks_group{
+    display: block;
+    height: 50px;
+}
+
 .hide{
     display:none;
 }
@@ -228,3 +233,7 @@ body
             {
                 background-color: #0f3c4b;
             }
+
+.check_container{
+    margin:6px;
+}
