@@ -6,6 +6,8 @@
 
 <link rel="stylesheet" href="main.css" />
 <link rel="stylesheet" type="text/css" href="general.css" />
+<link rel="stylesheet" type="text/css" href="style.css">
+
 <style id="" media="all">/* cyrillic-ext */
 	@font-face {
 	  font-family: 'Roboto';
@@ -18,7 +20,7 @@
 
 </head>
 
-<body>
+<body onload="checkFileAPI()">
 <div class="container hide" role="main" id ='main_container'>
 	<h1></h1>
 	<nav role="navigation">
@@ -27,17 +29,24 @@
 		<a href="./diffie.html">Diffie Hellman</a>
 	</nav>
 
-	<div class="checks-group cifrado_y_firma"> 
-	    <label> 
+
+	<div class="checks_group"> 
+	    <label class='check_container'> 
 	        <input type="checkbox" name="colorCheckbox" 
 	               value="SIMMETRIC_KEY" checked required> cifrar</label> 
-	    <label> 
+	    <label class='check_container'> 
 	        <input type="checkbox" name="colorCheckbox" 
 	               value="PUBLIC_KEY" checked required> firmar</label> 
 	</div> 
 
+	<div class="loader_item" id="loader_container">
+		<div class="loader09"></div>
+	</div>
+
+	<div class="files_container", id="files_container"> 
+
 	<div class="ARCHIVO"> 
-	    <form class="box">
+	    <form class="box" file_class='plain_file'>
 		<div class="box__input">
 			<input type="file" name="files[]" id="file_1" class="box__file" data-multiple-caption="{count} files selected" multiple />
 			<label for="file_1"><span class="box__dragndrop">Cargar </span><strong> archivo en claro</strong>.</label>
@@ -46,7 +55,7 @@
 	</div> 
 
 	<div class="SIMMETRIC_KEY selectt"> 
-	    <form class="box">
+	    <form class="box" file_class='simmetric_key'>
 		<div class="box__input">
 			<input type="file" name="files[]" id="file_2" class="box__file" data-multiple-caption="{count} files selected" multiple />
 			<label for="file_2"><span class="box__dragndrop">Cargar </span><strong>clave simétrica</strong>.</label>
@@ -55,7 +64,7 @@
 	</div> 
 
 	<div class="PUBLIC_KEY selectt">
-		<form class="box">
+		<form class="box" file_class='public_key'>
 		<div class="box__input">
 			<input type="file" name="files[]" id="file_3" class="box__file" data-multiple-caption="{count} files selected" multiple />
 			<label for="file_3"><span class="box__dragndrop">Cargar </span><strong>clave privada</strong>.</label>
@@ -63,6 +72,13 @@
 		</form>
 	</div> 
 
+	</div> 
+
+	<div id="main">
+            ...
+    </div>
+
+	<button type="button" id="clickMe">Click Me!</button>
 
 	<footer>
 		<p><strong>Para verificar <a href="http://www.flaticon.com/free-icon/outbox_3686" target="_blank">FlatIcon</a>.</p>
@@ -76,6 +92,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> <!-- Agregar jquery --> 
 <script type="text/javascript" src = "./checkboxes_control.js"></script>
 <script type="text/javascript" src = "./file_manipulation.js"></script>
+<script type="text/javascript" src = "./toggle_divs.js"></script>
 
 <script type="text/javascript">
 	
