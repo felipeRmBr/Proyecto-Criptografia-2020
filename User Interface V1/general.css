@@ -269,3 +269,15 @@ body
   .box__input {
     display: block;
   }
+
+  #loader_legend{
+    margin-bottom: 100px;
+    display: none;
+  }
+
+  .success_message{
+    margin-top: 50px;
+
+  }
+
+  @include loader09($size: 10px, $height: 48px, $gap: 8px, $duration: 1s, $align: middle);

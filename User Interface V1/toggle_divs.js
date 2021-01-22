@@ -1,5 +1,6 @@
 var btn = document.getElementById('clickMe');
 var loader = document.getElementById('loader_container');
+var loader_legend = document.getElementById('loader_legend');
 var files = document.getElementById('files_container');
 
 var loader_state = -1;
@@ -13,9 +14,11 @@ function toggleDivs(){
 
     if(loader_state == 1){
         loader.style.display='block';
+        loader_legend.style.display='block';
     }
     else{
         loader.style.display='none';
+        loader_legend.style.display='none';
     }
 
     if(files_state == 1){
@@ -24,7 +27,6 @@ function toggleDivs(){
     else{
         files.style.display='none';
     }
-
 
     //alert("The button has been clicked!");
 }
