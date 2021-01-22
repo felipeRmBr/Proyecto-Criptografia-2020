@@ -10,14 +10,6 @@ body
     padding: 0rem 1.25rem; /* 80 20 */
 }
 
-.container
-{
-    width: 100%;
-    max-width: 680px; /* 800 */
-    text-align: center;
-    margin: 0 auto;
-}
-
 .checks_group{
     display: block;
     height: 50px;
@@ -26,6 +18,16 @@ body
 .hide{
     display:none;
 }
+
+
+.container
+{
+    width: 100%;
+    max-width: 680px; /* 800 */
+    text-align: center;
+    margin: 0 auto;
+}
+
     .container h1
     {
         font-size: 42px;
@@ -134,7 +136,7 @@ body
         .box.is-success .box__success,
         .box.is-error .box__error
         {
-            display: block;
+            display: none;
             position: absolute;
             top: 50%;
             right: 0;
@@ -237,3 +239,33 @@ body
 .check_container{
     margin:6px;
 }
+
+
+ #progress_bar {
+    margin: 0px 40px;
+    padding: 3px;
+    border: 1px solid #000;
+    font-size: 14px;
+    clear: both;
+    opacity: 0;
+    -moz-transition: opacity 1s linear;
+    -o-transition: opacity 1s linear;
+    -webkit-transition: opacity 1s linear;
+    display:none;
+  }
+
+  #progress_bar.loading {
+    opacity: 1.0;
+    display: block;
+  }
+
+  #progress_bar .percent {
+    background-color: #99ccff;
+    height: auto;
+    width: 0;
+
+  }
+
+  .box__input {
+    display: block;
+  }

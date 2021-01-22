@@ -47,10 +47,17 @@
 
 	<div class="ARCHIVO"> 
 	    <form class="box" file_class='plain_file'>
-		<div class="box__input">
+		<div class="box__input" id='box_input_div'>
 			<input type="file" name="files[]" id="file_1" class="box__file" data-multiple-caption="{count} files selected" multiple />
 			<label for="file_1"><span class="box__dragndrop">Cargar </span><strong> archivo en claro</strong>.</label>
 		</div>
+
+		<div id="progress_bar">
+			<div class="percent">
+				0%
+			</div>
+		</div>
+
 		</form>
 	</div> 
 
@@ -98,7 +105,7 @@
 	
 	window.onload=function()  //executes when the page finishes loading
 	{
-		setTimeout(func1, 65);  //sets a timer which calls function func1 after 2,000 milliseconds = 2 secs.
+		setTimeout(func1, 65);  //sets a timer which calls function func1 after 65 milliseconds
 		
 	};
 	function func1()
