@@ -212,33 +212,37 @@
     box-shadow: -13px 20px 0 rgba(0, 82, 236, 0.2), 13px 20px 0 rgba(0, 82, 236, 0.2), 13px 46px 0 rgba(0, 82, 236, 0.2), -13px 46px 0 #0052ec; } }
 
 .loader09 {
-  width: 10px;
-  height: 48px;
-  background: #0052ec;
+  width: 15px;
+  height: 72px;
+  background: #39bfd3c7;
   position: relative;
-  animation: loader09-u3e967ec0 1s ease-in-out infinite;
-  animation-delay: 0.4s;
+  animation: loader09-u3e967ec0 1.5s ease-in-out infinite;
+  animation-delay: 0.6s;
   top: 50%;
   margin: -28px auto 0; }
   .loader09::after, .loader09::before {
     content: '';
     position: absolute;
-    width: 10px;
-    height: 48px;
-    background: #0052ec;
-    animation: loader09-u3e967ec0 1s ease-in-out infinite; }
+    width: 15px;
+    height: 72px;
+    background: #39bfd3c7;
+    animation: loader09-u3e967ec0 1.5s ease-in-out infinite; }
   .loader09::before {
-    right: 18px;
-    animation-delay: 0.2s; }
+    right: 25px;
+    animation-delay: 0.15s; }
   .loader09::after {
-    left: 18px;
-    animation-delay: 0.6s; }
+    left: 25px;
+    animation-delay: 0.8s; }
 
 @keyframes loader09-u3e967ec0 {
   0%, 100% {
-    box-shadow: 0 0 0 #0052ec, 0 0 0 #0052ec; }
-  50% {
-    box-shadow: 0 -8px 0 #0052ec, 0 8px 0 #0052ec; } }
+    box-shadow: 0 0 0 #39bfd3c7, 0 0 0 #39bfd3c7; }
+  40% {
+    box-shadow: 0 -15px 0 #39bfd3c7, 0 15px 0 #39bfd3c7; } }
+
+#0052ec
+
+#39bfd3c7c7
 
 .loader10 {
   width: 28px;
