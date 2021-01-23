@@ -9,7 +9,7 @@ var file_name;
 var input_file_box = document.getElementById('checks');
 
 // feature detection for drag&drop upload
-var isAdvancedUpload = true
+var isAdvancedUpload = true;
 
 // applying the effect for every form
 var forms = document.querySelectorAll( '.box' );
@@ -52,28 +52,33 @@ Array.prototype.forEach.call( forms, function( form )
 
                 //reader = new FileReader();
                 reader.onloadstart = function(e) {
-                    //input_file_box.style.diplay = 'none';
-                    //document.getElementById('box_input_div').style.diplay = 'none';
-                    document.getElementById('box_input_div').className="hide"
-                    //document.getElementById('box_input_div').style.visibility = 'hidden';
-                    document.getElementById('progress_bar').className ='loading';
+                    if(file_class=='main_file'){
+                        //input_file_box.style.diplay = 'none';
+                        //document.getElementById('box_input_div').style.diplay = 'none';
+                        document.getElementById('box_input_div').className="hide"
+                        //document.getElementById('box_input_div').style.visibility = 'hidden';
+                        document.getElementById('progress_bar').className ='loading';
+                    }
                 };
 
                 reader.onprogress = function(evt) {
-                    // evt is an ProgressEvent.
-                    if (evt.lengthComputable) {
-                        var percentLoaded = Math.round((evt.loaded / evt.total) * 80);
-                        // Increase the progress bar length.
-                        if (percentLoaded < 100) {
-                            setTimeout(function(){}, 1000)
-                            progress.style.width = percentLoaded + '%';
-                            progress.textContent = percentLoaded + '%';
+                    if(file_class=='main_file'){
+                        // evt is an ProgressEvent.
+                        if (evt.lengthComputable) {
+                            var percentLoaded = Math.round((evt.loaded / evt.total) * 80);
+                            // Increase the progress bar length.
+                            if (percentLoaded < 100) {
+                                setTimeout(function(){}, 1000)
+                                progress.style.width = percentLoaded + '%';
+                                progress.textContent = percentLoaded + '%';
+                            }
                         }
                     }
+
                 }
 
                 reader.onload = function (e) {
-                    if(file_class=='plain_file'){
+                    if(file_class=='main_file'){
                         plain_text = e.target.result;  //base64 formar
                         //console.log(cadena_original)
                         //output = e.target.result.split(',')[1];
@@ -86,12 +91,10 @@ Array.prototype.forEach.call( forms, function( form )
                             document.getElementById('progress_bar').className='hide';
                             document.getElementById('box_input_div').className="box__input"; }, 1000);
 
-                        displayContents('COMPLETE!!');
+                        //displayContents('COMPLETE!!');
 
                         console.log('Cadena original');
-                    }
-
-                    if(file_class=='simmetric_key'){
+                    }else if(file_class=='simmetric_key'){
                         simmetric_key = e.target.result;  //base64 formar
                         //console.log(cadena_original)
                         //output = e.target.result.split(',')[1];
@@ -99,9 +102,23 @@ Array.prototype.forEach.call( forms, function( form )
                         displayContents(simmetric_key);
 
                         console.log('Simmetric key');
-                    }
+                    }else if(file_class=='sign_file'){
+                        sign_block = e.target.result;  //base64 formar
+                        //console.log(cadena_original)
+                        //output = e.target.result.split(',')[1];
+                        //output = cadena_original;
+                        displayContents(sign_block);
 
-                    if(file_class=='public_key'){
+                        console.log('Simmetric key');
+                    }else if(file_class=='private_key'){
+                        private_key = e.target.result;  //base64 formar
+                        //console.log(cadena_original)
+                        //output = e.target.result.split(',')[1];
+                        //output = cadena_original;
+                        displayContents(private_key);
+
+                        console.log('Public Key');
+                    }else if(file_class=='public_key'){
                         public_key = e.target.result;  //base64 formar
                         //console.log(cadena_original)
                         //output = e.target.result.split(',')[1];

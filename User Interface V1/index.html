@@ -6,7 +6,6 @@
 
 <link rel="stylesheet" href="main.css" />
 <link rel="stylesheet" type="text/css" href="general.css" />
-<link rel="stylesheet" type="text/css" href="style.css">
 
 <style id="" media="all">/* cyrillic-ext */
 	@font-face {
@@ -20,7 +19,7 @@
 
 </head>
 
-<body onload="checkFileAPI()">
+<body>
 <div class="container hide" role="main" id ='main_container'>
 	<h1></h1>
 	<nav role="navigation">
@@ -28,7 +27,6 @@
 		<a href="./descifrar.html">Descifrar y Verificar</a>
 		<a href="./diffie.html">Diffie Hellman</a>
 	</nav>
-
 
 
 	<div class="loader_item" id="loader_container">
@@ -51,35 +49,34 @@
 
 	<div class="ARCHIVO"> 
 	    <form class="box" file_class='plain_file'>
-		<div class="box__input" id='box_input_div'>
-			<input type="file" name="files[]" id="file_1" class="box__file" data-multiple-caption="{count} files selected" multiple />
-			<label for="file_1"><span class="box__dragndrop">Cargar </span><strong> archivo en claro</strong>.</label>
-		</div>
-
-		<div id="progress_bar">
-			<div class="percent">
-				0%
+			<div class="box__input" id='box_input_div'>
+				<input type="file" name="files[]" id="file_1" class="box__file" data-multiple-caption="{count} files selected" multiple />
+				<label for="file_1"><span class="box__dragndrop">Cargar </span><strong> archivo en claro</strong>.</label>
 			</div>
-		</div>
 
+			<div id="progress_bar">
+				<div class="percent">
+					0%
+				</div>
+			</div>
 		</form>
 	</div> 
 
 	<div class="SIMMETRIC_KEY selectt"> 
 	    <form class="box" file_class='simmetric_key'>
-		<div class="box__input">
-			<input type="file" name="files[]" id="file_2" class="box__file" data-multiple-caption="{count} files selected" multiple />
-			<label for="file_2"><span class="box__dragndrop">Cargar </span><strong>clave simétrica</strong>.</label>
-		</div>
+			<div class="box__input">
+				<input type="file" name="files[]" id="file_2" class="box__file" data-multiple-caption="{count} files selected" multiple />
+				<label for="file_2"><span class="box__dragndrop">Cargar </span><strong>clave simétrica</strong>.</label>
+			</div>
 		</form>
 	</div> 
 
 	<div class="PUBLIC_KEY selectt">
 		<form class="box" file_class='public_key'>
-		<div class="box__input">
-			<input type="file" name="files[]" id="file_3" class="box__file" data-multiple-caption="{count} files selected" multiple />
-			<label for="file_3"><span class="box__dragndrop">Cargar </span><strong>clave privada</strong>.</label>
-		</div>
+			<div class="box__input">
+				<input type="file" name="files[]" id="file_3" class="box__file" data-multiple-caption="{count} files selected" multiple />
+				<label for="file_3"><span>Cargar </span><strong>clave privada</strong>.</label>
+			</div>
 		</form>
 	</div> 
 
@@ -89,11 +86,13 @@
             ...
     </div>
 
+
 	<button type="button" id="clickMe">Click Me!</button>
 
 	<footer>
 		<p><strong>Para verificar <a href="http://www.flaticon.com/free-icon/outbox_3686" target="_blank">FlatIcon</a>.</p>
 	</footer>
+
 </div>
 
 

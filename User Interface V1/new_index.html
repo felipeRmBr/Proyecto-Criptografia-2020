@@ -6,6 +6,8 @@
 
 <link rel="stylesheet" href="main.css" />
 <link rel="stylesheet" type="text/css" href="general.css" />
+<link rel="stylesheet" type="text/css" href="style.css">
+
 <style id="" media="all">/* cyrillic-ext */
     @font-face {
       font-family: 'Roboto';
@@ -20,57 +22,52 @@
 
 <body>
 <div class="container hide" role="main" id ='main_container'>
+    
     <nav role="navigation">
-        <a href="./new_index.html">Cifrar y Firmar</a>
-        <a href="./descifrar.html" class="is-selected">Descifrar y Verificar</a>
+        <a href="./index.html" class="is-selected">Cifrar y Firmar</a>
+        <a href="./descifrar.html">Descifrar y Verificar</a>
         <a href="./diffie.html">Diffie Hellman</a>
     </nav>
 
     <div class="checks-group cifrado_y_firma"> 
         <label class='check_container'> 
             <input type="checkbox" name="colorCheckbox" 
-                   value="DESCIFRAR_CHECK" checked required> descifrar</label> 
+                   value="CIFRAR_CHECK" checked required> cifrar</label> 
         <label class='check_container'> 
             <input type="checkbox" name="colorCheckbox" 
-                   value="VERIFICAR_CHECK" checked required> verificar</label> 
+                   value="FIRMAR_CHECK" checked required> firmar</label> 
     </div> 
 
     <div class="ARCHIVO"> 
         <form class="box" file_class='main_file'>
             <div class="box__input" id='box_input_div'>
                 <input type="file" name="files[]" id="file_1" class="box__file" data-multiple-caption="{count} files selected" multiple />
-                <label for="file_1" id = 'label_archivo'><span class="box__dragndrop">Cargar </span><strong>archivo cifrado</strong>.</label>
+                <label for="file_1" id = 'label_archivo'><span class="box__dragndrop">Cargar </span><strong>archivo en claro</strong>.</label>
             </div>
 
             <div id="progress_bar">
-                    <div class="percent">
-                        0%
-                    </div>
+                <div class="percent">
+                    0%
+                </div>
             </div>
+
         </form>
     </div> 
 
-    <div class="DESCIFRAR_CHECK selectt"> 
-        <form class="box" file_class='simmetric_key'>
-        <div class="box__input">
+    <div class="CIFRAR_CHECK selectt"> 
+        <form class="box">
+        <div class="box__input" file_class='simmetric_key'>
             <input type="file" name="files[]" id="file_2" class="box__file" data-multiple-caption="{count} files selected" multiple />
             <label for="file_2"><span class="box__dragndrop">Cargar </span><strong>clave simétrica</strong>.</label>
         </div>
         </form>
     </div> 
 
-    <div class="VERIFICAR_CHECK selectt">
-        <form class="box" file_class='sign_file'>
-        <div class="box__input">
-            <input type="file" name="files[]" id="file_3" class="box__file" data-multiple-caption="{count} files selected" multiple />
-            <label for="file_3"><span class="box__dragndrop">Cargar </span><strong>archivo de firma</strong>.</label>
-        </div>
-        </form>
-
+    <div class="FIRMAR_CHECK selectt">
         <form class="box">
-        <div class="box__input" file_class='public_key'>
-            <input type="file" name="files[]" id="file_4" class="box__file" data-multiple-caption="{count} files selected" multiple />
-            <label for="file_4"><span class="box__dragndrop">Cargar </span><strong>clave pública</strong>.</label>
+        <div class="box__input" file_class='private_key'>
+            <input type="file" name="files[]" id="file_3" class="box__file" data-multiple-caption="{count} files selected" multiple />
+            <label for="file_3"><span class="box__dragndrop">Cargar </span><strong>clave privada</strong>.</label>
         </div>
         </form>
     </div> 

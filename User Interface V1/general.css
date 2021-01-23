@@ -12,7 +12,6 @@ body
 
 .checks_group{
     display: block;
-    height: 50px;
 }
 
 .hide{
@@ -50,7 +49,7 @@ body
             border-bottom: 2px solid #c8dadf;
             display: inline-block;
             padding: 4px 8px;
-            margin: 0 5px;
+            margin: 25px 5px 0px 5px;
         }
         .container nav a.is-selected
         {
@@ -84,8 +83,8 @@ body
         font-size: 1rem; /* 20 */
         background-color: #c8dadf;
         position: relative;
-        padding: 23px 10px;
-        margin: 22px 50px;
+        padding: 23px 10px 20px 10px;
+        margin: 21px 50px;
     }
     .box.has-advanced-upload
     {
@@ -279,5 +278,70 @@ body
     margin-top: 50px;
 
   }
+
+.options_container{
+    margin-top: 75px;
+}
+
+    .diffie_option
+    {
+        border-bottom: 2px solid #c8dadf;
+        display: block;
+        padding: 4px 8px;
+        margin: 20px 200px 15px 200px;
+    }
+
+    .diffie_option:hover,
+    .diffie_option:focus
+    {
+        border-bottom-color: #0f3c4b;
+        cursor: pointer;
+    }
+
+
+.diffie_message{
+    margin: 75px 35px;
+}
+
+#diffie_s2{
+    display: none;
+}
+
+#diffie_s3{
+    display: none;
+}
+
+#diffie_s4{
+    display: none;
+}
+
+
+#diffie_s5{
+    display: none;
+}
+
+.file_input_diffie{
+    margin-top: 17%;
+}
+
+.myButton {
+    margin-top: 5px;
+    background-color:#54b1de;
+    border-radius:7px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:18px;
+    padding:10px 46px;
+    text-decoration:none;
+}
+.myButton:hover {
+    background-color:#42a9db;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+}
 
   @include loader09($size: 10px, $height: 48px, $gap: 8px, $duration: 1s, $align: middle);
