@@ -63,6 +63,11 @@ body
             border-bottom-color: #0f3c4b;
         }
 
+        .container nav a:active {
+            position:relative;
+            top:1px;
+        }
+
     .container footer
     {
         color: #92b0b3;
@@ -298,6 +303,11 @@ body
         cursor: pointer;
     }
 
+    .diffie_option:active {
+        position:relative;
+        top:2px;
+    }
+
 
 .diffie_message{
     margin: 75px 35px;
@@ -332,8 +342,8 @@ body
     cursor:pointer;
     color:#ffffff;
     font-family:Arial;
-    font-size:18px;
-    padding:10px 46px;
+    font-size:16px;
+    padding:8px 46px;
     text-decoration:none;
 }
 .myButton:hover {
@@ -341,7 +351,7 @@ body
 }
 .myButton:active {
     position:relative;
-    top:1px;
+    top:2px;
 }
 
   @include loader09($size: 10px, $height: 48px, $gap: 8px, $duration: 1s, $align: middle);
