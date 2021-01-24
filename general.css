@@ -10,6 +10,11 @@ body
     padding: 0rem 1.25rem; /* 80 20 */
 }
 
+a{
+    text-decoration: none;
+    color: currentColor;
+}
+
 .checks_group{
     display: block;
 }
