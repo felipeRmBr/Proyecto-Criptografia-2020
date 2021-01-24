@@ -295,6 +295,8 @@ a{
 
     .diffie_option
     {
+        font-size:17px;
+        font-weight: 450;
         border-bottom: 2px solid #c8dadf;
         display: block;
         padding: 4px 8px;
@@ -318,20 +320,7 @@ a{
     margin: 75px 35px;
 }
 
-#diffie_s2{
-    display: none;
-}
-
-#diffie_s3{
-    display: none;
-}
-
-#diffie_s4{
-    display: none;
-}
-
-
-#diffie_s5{
+.secondary_screen{
     display: none;
 }
 
