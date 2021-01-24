@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<title>CriptoAPP | DH</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="general.css" />
+<style id="" media="all">/* cyrillic-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 300;
+  src: url(/fonts.gstatic.com/s/roboto/v20/KFOjCnqEu92Fr1Mu51TjASc3CsTKlA.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+</style>
+
+
+<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+
+</head>
+
+<body>
+<div class="container" role="main">
+<h1></h1>
+<h1></h1>
+<br>
+<nav role="navigation">
+<a href="./index.html">Cifrar y Firmar</a>
+<a href="./descifrar.html">Descifrar y Verificar</a>
+<a href="./diffie.html" class="is-selected">Diffie Hellman</a>
+</nav>
+
+<div id='diffie_s6'>
+
+    <div>
+
+        <form class="box" file_class='dh_public_variables_2'>
+        <div class="box__input">
+            <input type="file" name="files[]" id="file_3" class="box__file" data-multiple-caption="{count} files selected" multiple />
+            <label for="file_3"><span class="box__dragndrop">Cargar archivo </span><strong>.dh2</strong>.</label>
+        </div>
+        </form>
+    </div> 
+
+    <div>
+        <form class="box" file_class='dh_private_exponent'>
+        <div class="box__input">
+            <input type="file" name="files[]" id="file_3" class="box__file" data-multiple-caption="{count} files selected" multiple />
+            <label for="file_3"><span class="box__dragndrop">Cargar archivo </span><strong>.keep.txt</strong>.</label>
+        </div>
+        </form>
+
+    </div> 
+
+    <a href="#" class="myButton" id='continuar_DH_2'>Continuar</a>
+
+</div>
+
+</div>
+<footer>
+
+</footer>
+
+<script src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> <!-- Agregar jquery --> 
+<script type="text/javascript" src = "./checkboxes_control.js"></script>
+<script type="text/javascript" src = "./file_manipulation.js"></script>
+
+
+</body>
+</html>

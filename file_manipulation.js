@@ -1,5 +1,4 @@
 
-var reader; //GLOBAL File Reader object for demo purpose only
 var plain_text;  // base64 formar
 var simmetric_key;
 var public_key;
@@ -126,13 +125,33 @@ Array.prototype.forEach.call( forms, function( form )
                         displayContents(public_key);
 
                         console.log('Public Key');
+
+                    }else if(file_class=='dh_public_variables'){
+                        //console.log('estoy entrando a un if incorrecto!!!')
+                        var dh_share_str = e.target.result;  //base64 formar
+                        let substrings = dh_share_str.split('SEPARATOR_TAG');
+
+                        base_dh_str =  substrings[0];
+                        modulo_dh_str = substrings[1];
+                        remote_public_result_str = substrings[2];
+
+                        console.log('base  recuperada ', base_dh_str);
+                        console.log('modulo  recuperado ', modulo_dh_str);
+                        console.log('public_Result recuperado ', remote_public_result_str);
+
+                    }else if(file_class=='dh_private_exponent'){
+                        exponent_dh_str = e.target.result;  //base64 formar
+                        console.log('exponente recuperado: ', exponent_dh_str);
                     }
-                    //var element = document.getElementById('main'); 
-                    //element.innerHTML = cadena_original; //display output in DOM
 
                 };//end onload() 
                 
-                reader.readAsDataURL(fileSelection.files[0]);
+                if(file_class=='main_file'){
+                    reader.readAsDataURL(fileSelection.files[0]);   
+                }else{
+                    reader.readAsText(fileSelection.files[0]);
+                }
+                
 
                 file_name = fileSelection.files[0].name;
                 //file_extension = file_name.split('.')[1];

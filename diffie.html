@@ -58,16 +58,17 @@
 
 </div>
 
-<div class='secondary_screen' id='diffie_s2_2'>
-    <div class = 'diffie_message'>
+    <div class='secondary_screen' id='diffie_s2_2'>
+        <div class = 'diffie_message'>
 
-    <h3>La operación se completo con éxito</h3>
-    <p>Busca los archivos en tu carpete de descargas y envíale a tu contacto el archivo con la extensión <strong>.share.txt</strong>. Podrás generar tu clave secreta una vez que tengas el archivo con la extensión <strong>.dh2.txt</strong> generado por tu contacto.</p>
+        <h3>La operación se completo con éxito</h3>
+        <p>Busca los archivos en tu carpete de descargas y envíale a tu contacto el archivo con la extensión <strong>.share.txt</strong>. Podrás generar tu clave secreta una vez que tengas el archivo con la extensión <strong>.dh2.txt</strong> generado por tu contacto.</p>
 
+        </div>
+
+        <a href="#" class="myButton" id='aceptar_inicio'>Aceptar</a>
     </div>
 
-    <a href="#" class="myButton" id='aceptar_inicio'>Aceptar</a>
-</div>
 
 <div class='secondary_screen' id='diffie_s3'>
     <div class = 'diffie_message'>
@@ -87,34 +88,54 @@
 
    <div class="file_input_diffie">
 
-        <form class="box" file_class='public_key'>
+        <form class="box" file_class='dh_public_variables'>
         <div class="box__input">
-            <input type="file" name="files[]" id="file_3" class="box__file" data-multiple-caption="{count} files selected" multiple />
-            <label for="file_3"><span class="box__dragndrop">Cargar archivo </span><strong>.share</strong>.</label>
+            <input type="file" name="files[]" id="dh_share_file" class="box__file" data-multiple-caption="{count} files selected" multiple />
+            <label for="dh_share_file"><span class="box__dragndrop">Cargar archivo </span><strong>.share</strong>.</label>
         </div>
         </form>
 
     </div> 
 
-    <a href="#" class="myButton">Continuar</a>
+    <a href="#" class="myButton" id='continuar_DH_1'>Continuar</a>
 
 </div>
 
 <div class='secondary_screen' id='diffie_s5'>
 
-   <div class="file_input_diffie">
-        <form class="box" file_class='public_key'>
+   <div>
+        <form class="box" file_class='dh_public_variables'>
         <div class="box__input">
-            <input type="file" name="files[]" id="file_3" class="box__file" data-multiple-caption="{count} files selected" multiple />
-            <label for="file_3"><span class="box__dragndrop">Cargar archivo </span><strong>.dh2</strong>.</label>
+            <input type="file" name="files[]" id="dh2_file" class="box__file" data-multiple-caption="{count} files selected" multiple />
+            <label for="dh2_file"><span class="box__dragndrop">Cargar archivo </span><strong>.dh2</strong>.</label>
         </div>
         </form>
     </div> 
 
-    <a href="#" class="myButton">Continuar</a>
+    <div>
+        <form class="box" file_class='dh_private_exponent'>
+        <div class="box__input">
+            <input type="file" name="files[]" id="dh_keep_file" class="box__file" data-multiple-caption="{count} files selected" multiple />
+            <label for="dh_keep_file"><span class="box__dragndrop">Cargar archivo </span><strong>.keep.txt</strong>.</label>
+        </div>
+        </form>
+    </div> 
 
+    <a href="#" class="myButton" id='continuar_DH_2'>Continuar</a>
 
 </div>
+
+    <div class='secondary_screen' id='diffie_s5_2'>
+        <div class = 'diffie_message'>
+
+        <h2>Todo listo...</h2>
+        <p>El algoritmo de Diffie Hellman está completo. Ahora tienes una clave secreta que tu contacto y tú pueden usar para intercambiar archivos de manera segura.</p>
+
+        </div>
+
+        <a href="#" class="myButton" id='aceptar_inicio_2'>Aceptar</a>
+    </div>
+
 
 
 </div>
@@ -124,7 +145,7 @@
 
 <script src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
-<script src="main_diffie.js"></script>
+<script src="diffie.js"></script>
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> <!-- Agregar jquery --> 
 <script type="text/javascript" src = "./checkboxes_control.js"></script>
