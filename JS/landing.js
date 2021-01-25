@@ -1,4 +1,4 @@
-var SEPARATOR_CONST = '   /******/   ';
+const SEPARATOR_CONST = '   /******/   ';
 var public_exp_hex = '10001';
 
 // screens

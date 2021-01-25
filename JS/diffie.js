@@ -85,11 +85,9 @@ function showScreenSucces(){
 
 
 
-
-
 /*********************ARRANCAR DIFFIE**********************/
-var bits_base = 64;
-var bits_modulo = 64;
+const BITS_BASE = 64;
+const BITS_MODULO = 96;
 
 var base_dh_str;
 var modulo_dh_str;
@@ -116,7 +114,7 @@ function startProgram(){
   var state_exponent = 0;
   var download_done = false
 
-  forge.prime.generateProbablePrime(bits_base, function(err, num) {
+  forge.prime.generateProbablePrime(BITS_BASE, function(err, num) {
     base_dh_str = num.toString(10);
     console.log('base ', base_dh_str);
     state_base = 1;
@@ -127,7 +125,7 @@ function startProgram(){
     }
   });
 
-  forge.prime.generateProbablePrime(bits_modulo, function(err, num) {
+  forge.prime.generateProbablePrime(BITS_MODULO, function(err, num) {
     modulo_dh_str = num.toString(10);
     console.log('modulo ', modulo_dh_str);
     state_modulo = 1;
@@ -164,43 +162,17 @@ function executePhase2(){
 
     console.log('public_A', public_A_dh_str); 
 
-    descargar();
+    var share_str = base_dh_str + 'SEPARATOR_TAG' + modulo_dh_str + 'SEPARATOR_TAG' + public_A_dh_str;
+    downloadTextFile(share_str, 'diffie_hellman.share.txt');
+    downloadTextFile(exponent_dh_str, 'diffie_hellman.keep.txt');
 
     showScreen2_2();
 }
 
-function descargar(){
-  console.log('Descargando archivos')
-
-  var element_1 = document.createElement('a');
-  var share_str = base_dh_str + 'SEPARATOR_TAG' + modulo_dh_str + 'SEPARATOR_TAG' + public_A_dh_str;
-
-  element_1.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(share_str));
-  element_1.setAttribute('download', 'diffie_hellman.share.txt');
-
-  element_1.style.display = 'none';
-  document.body.appendChild(element_1);
-
-  element_1.click();
-  document.body.removeChild(element_1);
-
-  var element_2 = document.createElement('a');
-
-  element_2.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(exponent_dh_str));
-  element_2.setAttribute('download', 'diffie_hellman.keep.txt');
-
-  element_2.style.display = 'none';
-  document.body.appendChild(element_2);
-
-  element_2.click();
-  document.body.removeChild(element_2);
-
-}
-
 function computeSharedSecret(){
   /*
-  var base = forge.prime.generateProbablePrime(bits_base);
-  var modulo = forge.prime.generateProbablePrime(bits_modulo);
+  var base = forge.prime.generateProbablePrime(BITS_BASE);
+  var modulo = forge.prime.generateProbablePrime(BITS_MODULO);
 
   var priv_alice = forge.prime.generateProbablePrime(20);
   var priv_bob = forge.prime.generateProbablePrime(20); */
@@ -249,19 +221,4 @@ function computeLocalPublicResult(base, exponente, modulo){
     var local_public_result = base_dh.modPow(exponent_dh, modulo_dh);
     local_public_result_str = local_public_result.toString(10);
     return local_public_result_str
-}
-
-function downloadTextFile(text, file_name){
-  console.log('Descargando clave compartida')
-
-  var element_1 = document.createElement('a');
-
-  element_1.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-  element_1.setAttribute('download', file_name);
-
-  element_1.style.display = 'none';
-  document.body.appendChild(element_1);
-
-  element_1.click();
-  document.body.removeChild(element_1);
 }

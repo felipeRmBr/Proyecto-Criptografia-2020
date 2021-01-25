@@ -1,7 +1,16 @@
+const SEPARATOR_CONST = '   /******/   '
 
 var plain_text;  // base64 formar
+
+// PARA FIRMA Y VERIFICACIÓN
+var modulus_hex;
+var private_exp_hex;
+var public_exp_hex;
+var public_RSA_key;
+var private_RSA_key;
+var signature_hex;
+
 var simmetric_key;
-var public_key;
 var decryptedText;
 var file_name;
 
@@ -77,6 +86,7 @@ Array.prototype.forEach.call( forms, function( form )
                 }
 
                 reader.onload = function (e) {
+
                     if(file_class=='main_file'){
                         plain_text = e.target.result;  //base64 formar
                         //console.log(cadena_original)
@@ -93,6 +103,8 @@ Array.prototype.forEach.call( forms, function( form )
                         //displayContents('COMPLETE!!');
 
                         console.log('Cadena original');
+
+
                     }else if(file_class=='simmetric_key'){
                         simmetric_key = e.target.result;  //base64 formar
                         //console.log(cadena_original)
@@ -101,30 +113,35 @@ Array.prototype.forEach.call( forms, function( form )
                         displayContents(simmetric_key);
 
                         console.log('Simmetric key');
-                    }else if(file_class=='sign_file'){
-                        sign_block = e.target.result;  //base64 formar
-                        //console.log(cadena_original)
-                        //output = e.target.result.split(',')[1];
-                        //output = cadena_original;
-                        displayContents(sign_block);
 
-                        console.log('Simmetric key');
+
+                    }else if(file_class=='signature_file'){
+                        signature_hex = e.target.result;
+
+                        console.log('Bloque de firma recuperado: ', signature_hex);
+
+
                     }else if(file_class=='private_key'){
-                        private_key = e.target.result;  //base64 formar
-                        //console.log(cadena_original)
-                        //output = e.target.result.split(',')[1];
-                        //output = cadena_original;
-                        displayContents(private_key);
+                        var private_RSA_key = e.target.result;  //base64 formar
+                        let substrings = private_RSA_key.split(SEPARATOR_CONST);
 
-                        console.log('Public Key');
+                        modulus_hex = substrings[0];
+                        private_exp_hex = substrings[1];
+
+                        console.log('modulo recuperado: ', modulus_hex);
+                        console.log('exponente privado recuperado: ', private_exp_hex);
+
+
                     }else if(file_class=='public_key'){
-                        public_key = e.target.result;  //base64 formar
-                        //console.log(cadena_original)
-                        //output = e.target.result.split(',')[1];
-                        //output = cadena_original;
-                        displayContents(public_key);
+                        var private_RSA_key = e.target.result;  //base64 formar
+                        let substrings = private_RSA_key.split(SEPARATOR_CONST);
 
-                        console.log('Public Key');
+                        modulus_hex = substrings[0];
+                        public_exp_hex = substrings[1];
+
+                        console.log('modulo recuperado: ', modulus_hex);
+                        console.log('exponente publico recuperado: ', public_exp_hex);
+
 
                     }else if(file_class=='dh_public_variables'){
                         //console.log('estoy entrando a un if incorrecto!!!')
@@ -139,12 +156,15 @@ Array.prototype.forEach.call( forms, function( form )
                         console.log('modulo  recuperado ', modulo_dh_str);
                         console.log('public_Result recuperado ', remote_public_result_str);
 
+
                     }else if(file_class=='dh_private_exponent'){
                         exponent_dh_str = e.target.result;  //base64 formar
                         console.log('exponente recuperado: ', exponent_dh_str);
+
                     }
 
                 };//end onload() 
+                
                 
                 if(file_class=='main_file'){
                     reader.readAsDataURL(fileSelection.files[0]);   
@@ -171,47 +191,24 @@ Array.prototype.forEach.call( forms, function( form )
         showFiles(element.target.files);
     });
 
-    
-    form.classList.add( 'has-advanced-upload' ); // letting the CSS part to know drag&drop is supported by the browser  
-
-    //form.classList.add( 'has-advanced-upload' ); // letting the CSS part to know drag&drop is supported by the browser
-
-    /*
-    [ 'drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop' ].forEach( function( event )
-    {
-        form.addEventListener( event, function( e )
-        {
-            // preventing the unwanted behaviours
-            e.preventDefault();
-            e.stopPropagation();
-        });
-    });
-    
-    [ 'dragover', 'dragenter' ].forEach( function( event )
-    {
-        form.addEventListener( event, function()
-        {
-            form.classList.add( 'is-dragover' );
-        });
-    });
-    
-    [ 'dragleave', 'dragend', 'drop' ].forEach( function( event )
-    {
-        form.addEventListener( event, function()
-        {
-            form.classList.remove( 'is-dragover' );
-        });
-    });
-    
-    form.addEventListener( 'drop', function( e )
-    {
-        droppedFiles = e.dataTransfer.files; // the files that were dropped
-        showFiles( droppedFiles );
-
-    });
-    */
+    form.classList.add( 'has-advanced-upload' ); 
 
 });
+
+function downloadTextFile(text, file_name){
+  console.log('DESCARGANDO ARCHIVO DE TEXTO')
+
+  var element_1 = document.createElement('a');
+
+  element_1.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element_1.setAttribute('download', file_name);
+
+  element_1.style.display = 'none';
+  document.body.appendChild(element_1);
+
+  element_1.click();
+  document.body.removeChild(element_1);
+}
 
 function displayContents(txt) {
     var element = document.getElementById('main'); 

@@ -41,8 +41,8 @@
     <div class="ARCHIVO"> 
         <form class="box" file_class='main_file'>
             <div class="box__input" id='box_input_div'>
-                <input type="file" name="files[]" id="file_1" class="box__file" data-multiple-caption="{count} files selected" multiple />
-                <label for="file_1" id = 'label_archivo'><span class="box__dragndrop">Cargar </span><strong>archivo en claro</strong>.</label>
+                <input type="file" name="files[]" id="main_file_1" class="box__file" data-multiple-caption="{count} files selected" multiple />
+                <label for="main_file_1" id='label_archivo_1'><span class="box__dragndrop">Cargar </span><strong>archivo en claro</strong>.</label>
             </div>
 
             <div id="progress_bar">
@@ -72,7 +72,7 @@
         </form>
     </div> 
 
-    <a href="#" class="myButton" id='boton_cifrar'>Continuar</a>
+    <a href="#" class="myButton" id='ejecutar_button_1'>Continuar_update</a>
 
     <footer>
         <p><strong>Para verificar <a href="" target="_blank">FlatIcon</a>.</p>
@@ -82,6 +82,8 @@
 <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
 
 <script>
+
+    const APARTADO = 1;
     
     window.onload=function()  //executes when the page finishes loading
     {
@@ -97,9 +99,17 @@
 <!-- Third party --> 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> <!-- Agregar jquery --> 
 
+<!---forge.js - from CDN-->
+<script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
+<!---AES-JS   - from CDN-->
+<script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+<!---BigInteger.js   - from CDN-->
+<script src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script> 
+
 <!-- local files --> 
 <script src = "./JS/checkboxes_control.js"></script>
 <script src = "./JS/file_manipulation.js"></script>
+<script src = "./JS/cifrado+firma.js"></script>
 
 </body>
 </html>

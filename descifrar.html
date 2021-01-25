@@ -38,8 +38,8 @@
     <div class="ARCHIVO"> 
         <form class="box" file_class='main_file'>
             <div class="box__input" id='box_input_div'>
-                <input type="file" name="files[]" id="file_1" class="box__file" data-multiple-caption="{count} files selected" multiple />
-                <label for="file_1" id = 'label_archivo'><span class="box__dragndrop">Cargar </span><strong>archivo cifrado</strong>.</label>
+                <input type="file" name="files[]" id="main_file_2" class="box__file" data-multiple-caption="{count} files selected" multiple />
+                <label for="main_file_2" id = 'label_archivo_2'><span class="box__dragndrop">Cargar </span><strong>archivo cifrado</strong>.</label>
             </div>
 
             <div id="progress_bar">
@@ -53,33 +53,35 @@
     <div class="DESCIFRAR_CHECK selectt"> 
         <form class="box" file_class='simmetric_key'>
         <div class="box__input">
-            <input type="file" name="files[]" id="file_2" class="box__file" data-multiple-caption="{count} files selected" multiple />
-            <label for="file_2"><span class="box__dragndrop">Cargar </span><strong>clave simétrica</strong>.</label>
+            <input type="file" name="files[]" id="file_sim_key" class="box__file" data-multiple-caption="{count} files selected" multiple />
+            <label for="file_sim_key"><span class="box__dragndrop">Cargar </span><strong>clave simétrica</strong>.</label>
         </div>
         </form>
     </div> 
 
     <div class="VERIFICAR_CHECK selectt">
-        <form class="box" file_class='sign_file'>
+        <form class="box" file_class='signature_file'>
         <div class="box__input">
-            <input type="file" name="files[]" id="file_3" class="box__file" data-multiple-caption="{count} files selected" multiple />
-            <label for="file_3"><span class="box__dragndrop">Cargar </span><strong>archivo de firma</strong>.</label>
+            <input type="file" name="files[]" id="file_dignature" class="box__file" data-multiple-caption="{count} files selected" multiple />
+            <label for="file_dignature"><span class="box__dragndrop">Cargar </span><strong>archivo de firma</strong>.</label>
         </div>
         </form>
 
-        <form class="box">
-        <div class="box__input" file_class='public_key'>
-            <input type="file" name="files[]" id="file_4" class="box__file" data-multiple-caption="{count} files selected" multiple />
-            <label for="file_4"><span class="box__dragndrop">Cargar </span><strong>clave pública</strong>.</label>
+        <form class="box" file_class='public_key'>
+        <div class="box__input">
+            <input type="file" name="files[]" id="file_public_key" class="box__file" data-multiple-caption="{count} files selected" multiple />
+            <label for="file_public_key"><span class="box__dragndrop">Cargar </span><strong>clave pública</strong>.</label>
         </div>
         </form>
     </div> 
 
-    <a href="#" class="myButton">Continuar</a>
+    <a href="#" class="myButton" id='ejecutar_button_2'>Continuar</a>
 
 </div>
 
 <script type="text/javascript">
+
+    const APARTADO = 2;
     
     window.onload=function()  //executes when the page finishes loading
     {
@@ -97,9 +99,18 @@
 <!-- THIRD PARTY --> 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> <!-- Agregar jquery --> 
 
+<!---forge.js - from CDN-->
+<script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
+<!---AES-JS   - from CDN-->
+<script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+<!---BigInteger.js   - from CDN-->
+<script src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script> 
+
+
 <!-- local files --> 
 <script type="text/javascript" src = "./JS/checkboxes_control.js"></script>
 <script type="text/javascript" src = "./JS/file_manipulation.js"></script>
+<script src = "./JS/cifrado+firma.js"></script>
 
 </body>
 </html>
