@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<title>CriptoAPP</title>
+
+<link rel="stylesheet" type="text/css" href="general.css" />
+<link rel="stylesheet" type="text/css" href="style.css">
+
+
+<style id="" media="all">/* cyrillic-ext */
+    @font-face {
+       font-family: 'Roboto';
+       font-style: normal;
+       font-weight: 200;
+       src: url(/Roboto/Roboto-Regular.ttf) format('ttf');
+       unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+     @font-face {
+       font-family: 'Montserrat', sans-serif;
+       src: url(/Montserra/Montserrat-Bold.ttf) format('ttf');
+     }
+
+</style>
+
+</head>
+
+<body>
+<div class="container hide" role="main" id ='main_container'>
+
+    <div id='landing_main_screen'>
+        <div id='main_logo'>KRYPTÓS</div>
+
+        <div id='landing_subtext'>
+            <span id='continuar_landing' onmouseover="changeBackground()" onmouseout="changeBackgroundBack()">
+                [continuar]
+            </span>
+        </div>
+
+    </div>
+
+
+    <div class="secondary_screen" id ='landing_screen_2'>
+
+        
+        <div id="container_landing_s2">
+            <h2>Bienvenido a kryptós.</h2>
+
+            <a href="#" class="myButton fixe_width_button" id='generar_claves'>Generar claves RSA</a><br><br>
+
+            <a href="#" class="myButton fixe_width_button" id='continuar'>Aplicación principal</a>
+        </div>
+
+        
+
+    </div>
+
+
+    <div class="secondary_screen" id ='landing_success_screen'>
+
+        <div id="container_landing_s2">
+            <h2>Proceso exitoso...</h2>
+            <p>Tus claves RSA se generaron con exito. El archivo con la extension <strong>.pbl</strong> es tu llave pública, y el archivo con la extensión <strong>.prv</strong> es tu clave privada. <br>Recuerda mantener tu clave privada en un directorio seguro.</p>
+        </div>
+
+        <a href="#" class="myButton" id='aceptar_landing'>Aceptar</a><br>
+
+        
+    </div>
+
+</div>
+
+<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+
+<script>
+    
+    window.onload=function()  //executes when the page finishes loading
+    {
+        setTimeout(func1, 65);  //sets a timer which calls function func1 after 2,000 milliseconds = 2 secs.
+        
+    };
+    function func1()
+    {
+        document.getElementById("main_container").className="container";
+    }
+
+    function changeBackground() {
+       document.body.style.background = '#7D979F';
+       //2C666E
+    }
+
+    function changeBackgroundBack(){
+       document.body.style.background = '#e5edf1';
+    }
+
+</script>
+
+
+<script src = "./landing.js"></script>
+
+<!---Third party JS-->
+
+<!---forge.js - from CDN-->
+<script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
+<!---AES-JS   - from CDN-->
+<script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+<!---BigInteger.js   - from CDN-->
+<script src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script> 
+
+<!---JavaScript RSA (jsbn)--->
+<script language="JavaScript" type="text/javascript" src="jsbn.js"></script>
+<script language="JavaScript" type="text/javascript" src="jsbn2.js"></script>
+<script language="JavaScript" type="text/javascript" src="prng4.js"></script>
+<script language="JavaScript" type="text/javascript" src="rng.js"></script>
+<script language="JavaScript" type="text/javascript" src="rsa.js"></script>
+<script language="JavaScript" type="text/javascript" src="rsa2.js"></script>
+
+</body>
+</html>

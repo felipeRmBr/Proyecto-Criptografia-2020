@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<title>CriptoAPP</title>
+
+<link rel="stylesheet" type="text/css" href="general.css" />
+<link rel="stylesheet" type="text/css" href="style.css">
+
+
+<style id="" media="all">/* cyrillic-ext */
+    @font-face {
+       font-family: 'Roboto';
+       font-style: normal;
+       font-weight: 200;
+       src: url(/Roboto/Roboto-Regular.ttf) format('ttf');
+       unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+     @font-face {
+       font-family: 'Montserrat', sans-serif;
+       src: url(/Montserra/Montserrat-Bold.ttf) format('ttf');
+     }
+
+</style>
+
+</head>
+
+<body>
+<div class="container hide" role="main" id ='main_container'>
+    
+    <div id='small_logo'>KRYPTÓS</div>
+
+    <div>Bienvenido a kryptos. Si eres un usuario nuevo haz click en generar claves para optener tus claves RSA. Si ya tienes tus claves, haz click en continuar.</div>
+
+    <div id='landing_subtext'>
+        <span id='landing_subtext_span' onmouseover="changeBackground()" onmouseout="changeBackgroundBack()">
+            [continuar]
+        </span>
+    </div>
+
+</div>
+
+<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+
+<script>
+    
+    window.onload=function()  //executes when the page finishes loading
+    {
+        setTimeout(func1, 65);  //sets a timer which calls function func1 after 2,000 milliseconds = 2 secs.
+        
+    };
+    function func1()
+    {
+        document.getElementById("main_container").className="container";
+    }
+
+    function changeBackground() {
+       document.body.style.background = '#d6eeeb';
+       //2C666E
+    }
+
+    function changeBackgroundBack(){
+       document.body.style.background = '#e5edf1';
+    }
+
+</script>
+
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> <!-- Agregar jquery --> 
+<script src = "./checkboxes_control.js"></script>
+<script src = "./file_manipulation.js"></script>
+
+</body>
+</html>

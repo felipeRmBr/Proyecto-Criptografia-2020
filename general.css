@@ -2,6 +2,8 @@ html
 {
 }
 
+
+
 body
 {
     font-family: Roboto, sans-serif;
@@ -13,6 +15,25 @@ body
 a{
     text-decoration: none;
     color: currentColor;
+}
+
+#main_logo{
+    height: 30%;
+    margin-top: 30%;
+    font-size: 65px;
+    font-weight: 700;
+    color: #393939;
+    letter-spacing: -2px;
+}
+#landing_subtext{
+    margin-top: 0%;
+    font-size: 20px;
+    font-weight: 200;
+    color: #393939;;
+}
+
+#landing_subtext span:hover{
+    cursor: pointer;
 }
 
 .checks_group{
@@ -320,6 +341,10 @@ a{
     margin: 75px 35px;
 }
 
+.message_container{
+    margin: 75px 35px;
+}
+
 .secondary_screen{
     display: none;
 }
@@ -346,6 +371,15 @@ a{
 .myButton:active {
     position:relative;
     top:2px;
+}
+
+.fixe_width_button{
+    width: 240px;
+    margin-bottom: -10px;
+}
+
+#container_landing_s2{
+    margin-top: 25%
 }
 
   @include loader09($size: 10px, $height: 48px, $gap: 8px, $duration: 1s, $align: middle);
