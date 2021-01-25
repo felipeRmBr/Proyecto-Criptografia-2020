@@ -2,16 +2,18 @@
 <html lang="en" class="no-js">
 <head>
 <meta charset="utf-8">
-
 <title>CriptoAPP</title>
+
 <link rel="stylesheet" type="text/css" href="./CSS/general.css" />
+<link rel="stylesheet" type="text/css" href="./CSS/style.css">
+
 
 <style id="" media="all">/* cyrillic-ext */
     @font-face {
       font-family: 'Roboto';
-      font-style: italic;
-      font-weight: 300;
-      src: url(/fonts.gstatic.com/s/roboto/v20/KFOjCnqEu92Fr1Mu51TjASc3CsTKlA.woff2) format('woff2');
+      font-style: normal;
+      font-weight: 200;
+      src: url(/Roboto/Roboto-Regular.ttf) format('ttf');
       unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
     }
 </style>
@@ -20,37 +22,39 @@
 
 <body>
 <div class="container hide" role="main" id ='main_container'>
+    
     <nav role="navigation">
-        <a href="./cifrar.html">Cifrar y Firmar</a>
-        <a href="./descifrar.html" class="is-selected">Descifrar y Verificar</a>
+        <a href="./cifrar.html" class="is-selected">Cifrar y Firmar</a>
+        <a href="./descifrar.html">Descifrar y Verificar</a>
         <a href="./diffie.html">Diffie Hellman</a>
     </nav>
 
     <div class="checks-group cifrado_y_firma"> 
         <label class='check_container'> 
             <input type="checkbox" name="colorCheckbox" 
-                   value="DESCIFRAR_CHECK" checked required> descifrar</label> 
+                   value="CIFRAR_CHECK" checked required> cifrar</label> 
         <label class='check_container'> 
             <input type="checkbox" name="colorCheckbox" 
-                   value="VERIFICAR_CHECK" checked required> verificar</label> 
+                   value="FIRMAR_CHECK" checked required> firmar</label> 
     </div> 
 
     <div class="ARCHIVO"> 
         <form class="box" file_class='main_file'>
             <div class="box__input" id='box_input_div'>
                 <input type="file" name="files[]" id="file_1" class="box__file" data-multiple-caption="{count} files selected" multiple />
-                <label for="file_1" id = 'label_archivo'><span class="box__dragndrop">Cargar </span><strong>archivo cifrado</strong>.</label>
+                <label for="file_1" id = 'label_archivo'><span class="box__dragndrop">Cargar </span><strong>archivo en claro</strong>.</label>
             </div>
 
             <div id="progress_bar">
-                    <div class="percent">
-                        0%
-                    </div>
+                <div class="percent">
+                    0%
+                </div>
             </div>
+
         </form>
     </div> 
 
-    <div class="DESCIFRAR_CHECK selectt"> 
+    <div class="CIFRAR_CHECK selectt"> 
         <form class="box" file_class='simmetric_key'>
         <div class="box__input">
             <input type="file" name="files[]" id="file_2" class="box__file" data-multiple-caption="{count} files selected" multiple />
@@ -59,27 +63,25 @@
         </form>
     </div> 
 
-    <div class="VERIFICAR_CHECK selectt">
-        <form class="box" file_class='sign_file'>
+    <div class="FIRMAR_CHECK selectt">
+        <form class="box" file_class='private_key'>
         <div class="box__input">
             <input type="file" name="files[]" id="file_3" class="box__file" data-multiple-caption="{count} files selected" multiple />
-            <label for="file_3"><span class="box__dragndrop">Cargar </span><strong>archivo de firma</strong>.</label>
-        </div>
-        </form>
-
-        <form class="box">
-        <div class="box__input" file_class='public_key'>
-            <input type="file" name="files[]" id="file_4" class="box__file" data-multiple-caption="{count} files selected" multiple />
-            <label for="file_4"><span class="box__dragndrop">Cargar </span><strong>clave pública</strong>.</label>
+            <label for="file_3"><span class="box__dragndrop">Cargar </span><strong>clave privada</strong>.</label>
         </div>
         </form>
     </div> 
 
-    <a href="#" class="myButton">Continuar</a>
+    <a href="#" class="myButton" id='boton_cifrar'>Continuar</a>
 
+    <footer>
+        <p><strong>Para verificar <a href="" target="_blank">FlatIcon</a>.</p>
+    </footer>
 </div>
 
-<script type="text/javascript">
+<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+
+<script>
     
     window.onload=function()  //executes when the page finishes loading
     {
@@ -92,14 +94,12 @@
     }
 </script>
 
-<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
-
-<!-- THIRD PARTY --> 
+<!-- Third party --> 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> <!-- Agregar jquery --> 
 
 <!-- local files --> 
-<script type="text/javascript" src = "./JS/checkboxes_control.js"></script>
-<script type="text/javascript" src = "./JS/file_manipulation.js"></script>
+<script src = "./JS/checkboxes_control.js"></script>
+<script src = "./JS/file_manipulation.js"></script>
 
 </body>
 </html>

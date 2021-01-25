@@ -35,6 +35,16 @@ descargar_inicio.addEventListener('click', startProgram);
 aceptar_inicio.addEventListener('click', showScreen1);
 aceptar_inicio_2.addEventListener('click', showScreen1);
 
+function hideAllScreens(){
+    diffie_s1.style.display='none';
+    diffie_s2.style.display='none';
+    diffie_s2_2.style.display='none'
+    diffie_s3.style.display='none';
+    diffie_s4.style.display='none';
+    diffie_s5.style.display='none';  
+    diffie_s5_2.style.display='none'; 
+}
+
 function showScreen1(){
     hideAllScreens();
     diffie_s1.style.display='block';
@@ -74,15 +84,7 @@ function showScreenSucces(){
 }
 
 
-function hideAllScreens(){
-    diffie_s1.style.display='none';
-    diffie_s2.style.display='none';
-    diffie_s2_2.style.display='none'
-    diffie_s3.style.display='none';
-    diffie_s4.style.display='none';
-    diffie_s5.style.display='none';  
-    diffie_s5_2.style.display='none'; 
-}
+
 
 
 /*********************ARRANCAR DIFFIE**********************/

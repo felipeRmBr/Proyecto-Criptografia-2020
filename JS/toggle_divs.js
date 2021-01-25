@@ -1,4 +1,4 @@
-var btn = document.getElementById('clickMe');
+var btn = document.getElementById('boton_cifrar');
 var loader = document.getElementById('loader_container');
 var loader_legend = document.getElementById('loader_legend');
 var files = document.getElementById('files_container');
