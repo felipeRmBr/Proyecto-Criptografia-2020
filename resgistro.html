@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 200;
+    src: url(/Roboto/Roboto-Regular.ttf) format('ttf');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+@font-face {
+   font-family: 'Montserrat', sans-serif;
+   src: url(/Montserra/Montserrat-Bold.ttf) format('ttf');
+}
+
+body {
+  font-family: 'Roboto';
+  background-color: #e5edf1;
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add padding to containers */
+
+.register_main_container{
+  display:block;
+  margin: auto;
+  margin-top: 65px;
+}
+
+.container{
+  padding: 16px;
+  background-color: e5edf1;
+  border-radius: 15px;
+  padding-top: 10px;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding-top: 15px;
+  padding-right: -15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #e5edf1;
+  text-align: center;
+}
+
+.register_container{
+  width: 500px;
+  margin: auto;
+  background: #e5edf1;
+}
+
+.logo_and_legend{
+  text-align: center;
+  margin: auto;
+  width: 500px;
+}
+
+.logo_and_legend{
+  margin-bottom: 25px;
+}
+
+#logo_small{
+  font-family: 'Montserrat';
+  font-size: 40px;
+  font-weight: 700;
+  color: #393939;
+  letter-spacing: -2px;
+  margin-bottom: 45px;
+  display: block;
+}
+
+#legend{
+  font-size: 18px;
+}
+
+</style>
+</head>
+<body>
+
+<div class='register_main_container'>
+
+    <div class='logo_and_legend'>
+      <span id='logo_small'>KRIPTOS</span>
+      <span id='legend'>Regístrate para obtner tus claves persosnales.</span>
+    </div>
+
+    <div class='register_container'>
+
+      <form>
+
+        <div>
+
+          <label for="name"><b>Nombre de usuario</b></label>
+          <input type="text" placeholder="Elige un nickname" name="email" id="nickname" required>
+
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Ingresa un Password" name="psw" id="psw" required>
+
+          <button type="submit" class="registerbtn">Registrarme</button>
+
+        </div>
+
+      </form>
+
+      <div class="container signin">
+          <p>Ya estás registrado? <a href="#">Sigue a la aplicación principal.</a></p>
+          </div>
+    </div>
+
+
+</div>
+
+
+
+</body>
+</html>

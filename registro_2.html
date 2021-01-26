@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* Add a blue text color to links */
+  a {
+    color: dodgerblue;
+  }
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="./CSS/general.css">
+
+</head>
+<body>
+
+<div class='container'>
+
+    <div  id='cont_register_main'>
+      <div class='logo_and_legend'>
+        <span id='logo_small'>KRIPTOS</span>
+        <span id='legend'>Regístrate para obtener tus claves persosnales.</span>
+      </div>
+
+      <div class='cont_register_inner'>
+
+        <form>
+
+          <div>
+
+            <label for="name"><b>Nombre de usuario</b></label>
+            <input type="text" placeholder="Elige un nickname" name="email" id="nickname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Ingresa un Password" name="psw" id="psw" required>
+
+          </div>
+
+          
+
+        </form>
+
+      </div>
+
+      <div class='register_actions_container'>
+
+        <a href="#" class="myButton" id='generar_claves_button'>Registrarme</a><br>
+        
+        <div class="container signin">
+            <br>
+            <p>¿Ya estás registrado? <a href="#" id='go_to_main'><strong>Sigue a la aplicación principal.</strong></a></p>
+        </div>
+
+      </div>
+      
+    </div>
+
+    <div class="secondary_screen" id ='register_success_screen'>
+
+        <div id="container_landing_s2">
+            <h2>Proceso exitoso...</h2>
+            <p>Tus claves RSA se generaron con exito. El archivo con la extension <strong>.pbl</strong> es tu llave pública, y el archivo con la extensión <strong>.prv</strong> es tu clave privada. <br>Recuerda mantener tu clave privada en un directorio seguro.</p>
+        </div>
+
+        <a href="#" class="myButton" id='aceptar_register_succes'>Aceptar</a><br>
+        
+    </div>
+
+</div>
+
+
+<!---local JS files-->
+
+    <script src = "./JS/landing.js"></script>
+    <script src = "./JS/cifrado+firma.js"></script>
+
+    <script type="text/javascript">
+
+      // screens
+      var register_main_screen = document.getElementById('cont_register_main');
+      var register_success_screen = document.getElementById('register_success_screen');
+      //var register_screen_2 = document.getElementById('registerg_screen_2');
+
+      
+      // Buttons and calls to action
+      var generar_claves_action = document.getElementById('generar_claves_button'); 
+      var aceptar_register_succes = document.getElementById('aceptar_register_succes'); 
+      var go_to_main = document.getElementById('go_to_main'); 
+
+      generar_claves_action.addEventListener('click', do_genrsa);
+      aceptar_register_succes.addEventListener('click', goToMainApp);
+      go_to_main.addEventListener('click', goToMainApp);
+
+    </script>
+
+    <!---JavaScript RSA (jsbn)--->
+    <script language="JavaScript" type="text/javascript" src = "./JS/jsbn.js"></script>
+    <script language="JavaScript" type="text/javascript" src = "./JS/jsbn2.js"></script>
+    <script language="JavaScript" type="text/javascript" src = "./JS/prng4.js"></script>
+    <script language="JavaScript" type="text/javascript" src = "./JS/rng.js"></script>
+    <script language="JavaScript" type="text/javascript" src = "./JS/rsa.js"></script>
+    <script language="JavaScript" type="text/javascript" src = "./JS/rsa2.js"></script>
+
+<!---remote JS files-->
+
+    <!---forge.js - from CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
+    <!---AES-JS   - from CDN-->
+    <script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+    <!---BigInteger.js   - from CDN-->
+    <script src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script> 
+
+
+
+</body>
+
+
+</html>
