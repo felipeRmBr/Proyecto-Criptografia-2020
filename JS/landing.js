@@ -1,29 +1,24 @@
-const SEPARATOR_CONST = '   /******/   ';
-var public_exp_hex = '10001';
+var SEPARATOR_CONST = '/******/';
+var PUBLIC_EXP_HEX = '10001';
+var ID_TAG = '#123456789#'; 
 
-// screens
-var landing_main_screen = document.getElementById('landing_main_screen');
-var landing_screen_2 = document.getElementById('landing_screen_2');
-var landing_success_screen = document.getElementById('landing_success_screen');
-
-// Buttons and calls to action
-var continuar_landing = document.getElementById('continuar_landing');
-var generar_claves_action = document.getElementById('generar_claves'); 
-var aceptar_landing = document.getElementById('aceptar_landing'); 
-
-continuar_landing.addEventListener('click', showScreen2);
-generar_claves_action.addEventListener('click', do_genrsa);
-aceptar_landing.addEventListener('click', goToMainApp);
-
-function hideAllScreens(){
-    landing_main_screen.style.display='none';
-    landing_screen_2.style.display='none';
-    landing_success_screen.style.display='none';
+function goToRegister(){
+    window.location.href="registro_2.html";
 }
 
-function showScreen1(){
+function goToMainApp(){
+    window.location.href="cifrar.html";
+}
+
+function hideAllScreens(){
+    register_main_screen.style.display='none';
+    register_success_screen.style.display='none';
+}
+
+function showSuccessScreen(){
     hideAllScreens();
-    diffie_s1.style.display='block';
+    register_success_screen.style.display = 'block';
+
 }
 
 function showScreen2(){
@@ -32,40 +27,49 @@ function showScreen2(){
     document.body.style.background = '#e5edf1';
 }
 
-function showSuccessScreen(){
-    hideAllScreens();
-    landing_success_screen.style.display = 'block';
-
-}
-
-function goToMainApp(){
-    window.location.href="cifrar.html";
-}
-
 function do_genrsa() {
 
-  console.log("Generating RSA Key...");
-  var before = new Date();
-  var rsa = new RSAKey();
+  let nickname = document.getElementById('nickname').value;
+  let password  = document.getElementById('psw').value; 
 
-  rsa.generate(128, public_exp_hex);
+  if(password.length >= 8){
+    // Generate RSA keys
+      console.log("Generating RSA Key...");
+      var before = new Date();
+      var rsa = new RSAKey();
 
-  var modulus_hex = rsa.n.toString(16);
-  var private_exp_hex = rsa.d.toString(16);
-  
-  console.log('modulus: ', modulus_hex);
-  console.log('priv_exp: ', private_exp_hex)
+      rsa.generate(128, PUBLIC_EXP_HEX);
 
-  var after = new Date();
-  console.log("Key Generation Time: " + (after - before) + "ms");
+      var modulus_hex = rsa.n.toString(16);
+      var private_exp_hex = rsa.d.toString(16);
+      
+      console.log('modulus: ', modulus_hex);
+      console.log('priv_exp: ', private_exp_hex);
 
-  var private_key_str = modulus_hex + SEPARATOR_CONST + private_exp_hex;
-  var public_key_str = modulus_hex + SEPARATOR_CONST + public_exp_hex;
+      var after = new Date();
+      console.log("Key Generation Time: " + (after - before) + "ms");
 
-  downloadTextFile(private_key_str, 'private_key.txt');
-  downloadTextFile(public_key_str, 'public_key.txt');
+      var private_key_str = ID_TAG + SEPARATOR_CONST + modulus_hex + SEPARATOR_CONST + private_exp_hex;
+      var public_key_str = modulus_hex + SEPARATOR_CONST + PUBLIC_EXP_HEX;
 
-  showSuccessScreen();
+    // encrypt private_key using password
+      // get a 16 bytes key using password as a seed
+      let md_hex = doHashing(password);
+      let key_hex = md_hex.slice(0,16);
+
+      let key = fromHexStrToArray(key_hex);
+
+      encr_priv_key_hex = doCipher(private_key_str, key, 'base64');
+
+    downloadTextFile(encr_priv_key_hex, 'private_key.txt');
+    downloadTextFile(public_key_str, 'public_key.txt');
+
+    showSuccessScreen();
+
+  }else{
+    alert('El password debe contener al menos 8 caracteres')
+  }
+
 }
 
 function downloadTextFile(text, file_name){

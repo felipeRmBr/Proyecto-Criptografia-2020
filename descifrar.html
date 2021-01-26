@@ -36,7 +36,7 @@
     </div> 
 
     <div class="ARCHIVO"> 
-        <form class="box" file_class='main_file'>
+        <form class="box" file_class='main_doc_2'>
             <div class="box__input" id='box_input_div'>
                 <input type="file" name="files[]" id="main_file_2" class="box__file" data-multiple-caption="{count} files selected" multiple />
                 <label for="main_file_2" id = 'label_archivo_2'><span class="box__dragndrop">Cargar </span><strong>archivo cifrado</strong>.</label>
@@ -79,25 +79,31 @@
 
 </div>
 
-<script type="text/javascript">
+<!-- local files --> 
+    <script type="text/javascript" src = "./JS/file_manipulation.js"></script>
+    <script src = "./JS/cifrado+firma.js"></script>
 
-    const APARTADO = 2;
-    
-    window.onload=function()  //executes when the page finishes loading
-    {
-        setTimeout(func1, 65);  //sets a timer which calls function func1 after 2,000 milliseconds = 2 secs.
+    <script type="text/javascript">
+        var ejecutar_2 = document.getElementById('ejecutar_button_2');
+        ejecutar_2.addEventListener('click', executeActions_2);
         
-    };
-    function func1()
-    {
-        document.getElementById("main_container").className="container";
-    }
-</script>
+        window.onload=function()  //executes when the page finishes loading
+        {
+            setTimeout(func1, 65);  //sets a timer which calls function func1 after 2,000 milliseconds = 2 secs.
+            
+        };
+        function func1()
+        {
+            document.getElementById("main_container").className="container";
+        }
+    </script>
 
-<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+    <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
 
 <!-- THIRD PARTY --> 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> <!-- Agregar jquery --> 
+        <!-- Local but dependent -->
+        <script src = "./JS/checkboxes_control.js"></script>
 
 <!---forge.js - from CDN-->
 <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
@@ -105,12 +111,6 @@
 <script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
 <!---BigInteger.js   - from CDN-->
 <script src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script> 
-
-
-<!-- local files --> 
-<script type="text/javascript" src = "./JS/checkboxes_control.js"></script>
-<script type="text/javascript" src = "./JS/file_manipulation.js"></script>
-<script src = "./JS/cifrado+firma.js"></script>
 
 </body>
 </html>

@@ -1,3 +1,17 @@
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 200;
+    src: url(/Roboto/Roboto-Regular.ttf) format('ttf');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+@font-face {
+   font-family: 'Montserrat', sans-serif;
+   src: url(/Montserra/Montserrat-Bold.ttf) format('ttf');
+}
+
+
 html
 {
 }
@@ -17,6 +31,11 @@ a{
     color: currentColor;
 }
 
+.hide{
+    display:none;
+}
+
+/*************************   LANDING   *************************/
 #main_logo{
     height: 30%;
     margin-top: 30%;
@@ -36,14 +55,93 @@ a{
     cursor: pointer;
 }
 
+/*************************   REGISTER   *************************/
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 470px;
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+#cont_register_main{
+  display:block;
+  margin: auto;
+  margin-top: 65px;
+}
+
+.cont_register_inner{
+  width: 500px;
+  margin: auto;
+  background: #e5edf1;
+  text-align: left;
+}
+
+.register_actions_container{
+  width: 500px;
+  margin: auto;
+  background: #e5edf1;
+}
+
+.signin{
+  background-color: #e5edf1;
+  text-align: center;
+}
+
+.logo_and_legend{
+  text-align: center;
+  margin: auto;
+  width: 500px;
+  margin-bottom: 35px;
+}
+
+#logo_small{
+  font-family: 'Montserrat';
+  font-size: 43px;
+  font-weight: 700;
+  color: #393939;
+  letter-spacing: -2px;
+  margin-bottom: 50px;
+  display: block;
+}
+
+#legend{
+  font-size: 16px;
+}
+
+#generar_claves_button{
+    /*margin: 5px 0 22px 0;*/
+    width: 411px;
+}
+
+
+#psw_container{
+    position: relative;
+    padding: 0px;
+    /*padding-left: 50px;
+    padding-right: 50px;*/
+    margin: 21px auto;
+}
+
+#firmar_psw_input{
+    width: 81%;
+    text-align: center;
+}
+
+/*************************   GENERAL   *************************/
 .checks_group{
     display: block;
 }
-
-.hide{
-    display:none;
-}
-
 
 .container
 {
@@ -109,6 +207,7 @@ a{
             color: #39bfd3;
         }
 
+    
     .box
     {
         font-size: 1rem; /* 20 */
@@ -117,6 +216,7 @@ a{
         padding: 23px 10px 20px 10px;
         margin: 21px 50px;
     }
+
     .box.has-advanced-upload
     {
         outline: 2px dashed #92b0b3;

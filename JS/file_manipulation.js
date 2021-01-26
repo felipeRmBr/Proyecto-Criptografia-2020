@@ -1,18 +1,16 @@
-const SEPARATOR_CONST = '   /******/   '
-
-var plain_text;  // base64 formar
+var SEPARATOR_CONST = '/******/';
+var doc_content;  // base64 formar
 
 // PARA FIRMA Y VERIFICACIÓN
 var modulus_hex;
 var private_exp_hex;
 var public_exp_hex;
-var public_RSA_key;
-var private_RSA_key;
+var encr_priv_key_hex;
 var signature_hex;
+var simmetric_key_hex;
 
-var simmetric_key;
 var decryptedText;
-var file_name;
+var full_file_name;
 
 var input_file_box = document.getElementById('checks');
 
@@ -60,7 +58,7 @@ Array.prototype.forEach.call( forms, function( form )
 
                 //reader = new FileReader();
                 reader.onloadstart = function(e) {
-                    if(file_class=='main_file'){
+                    if(file_class=='main_doc_1' || file_class=='main_doc_2'){
                         //input_file_box.style.diplay = 'none';
                         //document.getElementById('box_input_div').style.diplay = 'none';
                         document.getElementById('box_input_div').className="hide"
@@ -70,7 +68,7 @@ Array.prototype.forEach.call( forms, function( form )
                 };
 
                 reader.onprogress = function(evt) {
-                    if(file_class=='main_file'){
+                    if(file_class=='main_doc_1' || file_class=='main_doc_2'){
                         // evt is an ProgressEvent.
                         if (evt.lengthComputable) {
                             var percentLoaded = Math.round((evt.loaded / evt.total) * 80);
@@ -87,8 +85,14 @@ Array.prototype.forEach.call( forms, function( form )
 
                 reader.onload = function (e) {
 
-                    if(file_class=='main_file'){
-                        plain_text = e.target.result;  //base64 formar
+                    if(file_class=='main_doc_1' || file_class=='main_doc_2'){
+
+                        if(file_class=='main_doc_1'){
+                            doc_content = e.target.result; //base64 formar
+                        }else if(file_class=='main_doc_2'){
+                            doc_content = e.target.result
+                        }
+                        
                         //console.log(cadena_original)
                         //output = e.target.result.split(',')[1];
                         //output = cadena_original;
@@ -102,17 +106,12 @@ Array.prototype.forEach.call( forms, function( form )
 
                         //displayContents('COMPLETE!!');
 
-                        console.log('Cadena original');
+                        console.log('Lectura completa');
 
 
                     }else if(file_class=='simmetric_key'){
-                        simmetric_key = e.target.result;  //base64 formar
-                        //console.log(cadena_original)
-                        //output = e.target.result.split(',')[1];
-                        //output = cadena_original;
-                        displayContents(simmetric_key);
-
-                        console.log('Simmetric key');
+                        simmetric_key_hex = e.target.result;  //
+                        console.log('Simmetric key:', simmetric_key_hex);
 
 
                     }else if(file_class=='signature_file'){
@@ -122,19 +121,13 @@ Array.prototype.forEach.call( forms, function( form )
 
 
                     }else if(file_class=='private_key'){
-                        var private_RSA_key = e.target.result;  //base64 formar
-                        let substrings = private_RSA_key.split(SEPARATOR_CONST);
+                        encr_priv_key_hex = e.target.result;  //base64 formar
 
-                        modulus_hex = substrings[0];
-                        private_exp_hex = substrings[1];
-
-                        console.log('modulo recuperado: ', modulus_hex);
-                        console.log('exponente privado recuperado: ', private_exp_hex);
-
+                        console.log('private_RSA_key recuperada: ', encr_priv_key_hex);
 
                     }else if(file_class=='public_key'){
-                        var private_RSA_key = e.target.result;  //base64 formar
-                        let substrings = private_RSA_key.split(SEPARATOR_CONST);
+                        var public_RSA_key = e.target.result;  //base64 formar
+                        let substrings = public_RSA_key.split(SEPARATOR_CONST);
 
                         modulus_hex = substrings[0];
                         public_exp_hex = substrings[1];
@@ -166,14 +159,26 @@ Array.prototype.forEach.call( forms, function( form )
                 };//end onload() 
                 
                 
-                if(file_class=='main_file'){
-                    reader.readAsDataURL(fileSelection.files[0]);   
+                if(file_class=='main_doc_1'){
+                    reader.readAsDataURL(fileSelection.files[0]); 
+                    full_file_name = fileSelection.files[0].name; 
+
+                }else if(file_class=='main_doc_2'){
+                    if(descifrar_check_state==1){
+                        // descifrado
+                        reader.readAsText(fileSelection.files[0]);
+                    }else if(descifrar_check_state==-1){
+                        //solo verificación
+                        reader.readAsDataURL(fileSelection.files[0]); 
+                    }
+
+                    full_file_name = fileSelection.files[0].name; 
+
                 }else{
                     reader.readAsText(fileSelection.files[0]);
+                    
                 }
                 
-
-                file_name = fileSelection.files[0].name;
                 //file_extension = file_name.split('.')[1];
             }
             else { //this is where you could fallback to Java Applet, Flash or similar
@@ -208,6 +213,20 @@ function downloadTextFile(text, file_name){
 
   element_1.click();
   document.body.removeChild(element_1);
+}
+
+function downloadDecryptedDoc(decrypted_base64, file_name){
+    console.log('Descargando documento')
+    var element = document.createElement('a');
+
+    element.setAttribute('href', decrypted_base64);
+    element.setAttribute('download', file_name);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+    document.body.removeChild(element);
 }
 
 function displayContents(txt) {

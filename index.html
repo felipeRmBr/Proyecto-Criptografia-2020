@@ -27,6 +27,7 @@
 </head>
 
 <body>
+
 <div class="container hide" role="main" id ='main_container'>
 
     <div id='landing_main_screen'>
@@ -40,82 +41,57 @@
 
     </div>
 
-
-    <div class="secondary_screen" id ='landing_screen_2'>
-
-        
-        <div id="container_landing_s2">
-            <h2>Bienvenido a kryptós.</h2>
-
-            <a href="#" class="myButton fixe_width_button" id='generar_claves'>Generar claves RSA</a><br><br>
-
-            <a href="#" class="myButton fixe_width_button" id='continuar'>Aplicación principal</a>
-        </div>
-
-        
-
-    </div>
-
-
-    <div class="secondary_screen" id ='landing_success_screen'>
-
-        <div id="container_landing_s2">
-            <h2>Proceso exitoso...</h2>
-            <p>Tus claves RSA se generaron con exito. El archivo con la extension <strong>.pbl</strong> es tu llave pública, y el archivo con la extensión <strong>.prv</strong> es tu clave privada. <br>Recuerda mantener tu clave privada en un directorio seguro.</p>
-        </div>
-
-        <a href="#" class="myButton" id='aceptar_landing'>Aceptar</a><br>
-
-        
-    </div>
-
 </div>
 
-<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
 
-<script>
-    
-    window.onload=function()  //executes when the page finishes loading
-    {
-        setTimeout(func1, 65);  //sets a timer which calls function func1 after 2,000 milliseconds = 2 secs.
-        
-    };
-    function func1()
-    {
-        document.getElementById("main_container").className="container";
-    }
-
-    function changeBackground() {
-       document.body.style.background = '#7D979F';
-       //2C666E
-    }
-
-    function changeBackgroundBack(){
-       document.body.style.background = '#e5edf1';
-    }
-
-</script>
-
-
-<!---remote party JS-->
-
-<!---forge.js - from CDN-->
-<script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
-<!---AES-JS   - from CDN-->
-<script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
-<!---BigInteger.js   - from CDN-->
-<script src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script> 
-
-<!---JavaScript RSA (jsbn)--->
-<script language="JavaScript" type="text/javascript" src = "./JS/jsbn.js"></script>
-<script language="JavaScript" type="text/javascript" src = "./JS/jsbn2.js"></script>
-<script language="JavaScript" type="text/javascript" src = "./JS/prng4.js"></script>
-<script language="JavaScript" type="text/javascript" src = "./JS/rng.js"></script>
-<script language="JavaScript" type="text/javascript" src = "./JS/rsa.js"></script>
-<script language="JavaScript" type="text/javascript" src = "./JS/rsa2.js"></script>
 
 <!---local JS-->
-<script src = "./JS/landing.js"></script>
+    <script src = "./JS/landing.js"></script>
+
+    <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+
+    <script>
+        // Buttons and calls to action
+        var continuar_landing = document.getElementById('continuar_landing');
+        continuar_landing.addEventListener('click', goToRegister);
+        
+        window.onload=function()  //executes when the page finishes loading
+        {
+            setTimeout(func1, 65);  //sets a timer which calls function func1 after 2,000 milliseconds = 2 secs.
+            
+        };
+        function func1()
+        {
+            document.getElementById("main_container").className="container";
+        }
+
+        function changeBackground() {
+           document.body.style.background = '#7D979F';
+           //2C666E
+        }
+
+        function changeBackgroundBack(){
+           document.body.style.background = '#e5edf1';
+        }
+
+    </script>
+
+    <!---JavaScript RSA (jsbn)--->
+    <script language="JavaScript" type="text/javascript" src = "./JS/jsbn.js"></script>
+    <script language="JavaScript" type="text/javascript" src = "./JS/jsbn2.js"></script>
+    <script language="JavaScript" type="text/javascript" src = "./JS/prng4.js"></script>
+    <script language="JavaScript" type="text/javascript" src = "./JS/rng.js"></script>
+    <script language="JavaScript" type="text/javascript" src = "./JS/rsa.js"></script>
+    <script language="JavaScript" type="text/javascript" src = "./JS/rsa2.js"></script>
+
+<!---remote JS-->
+
+    <!---forge.js - from CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
+    <!---AES-JS   - from CDN-->
+    <script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+    <!---BigInteger.js   - from CDN-->
+    <script src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script> 
 
 </body>
 </html>

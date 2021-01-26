@@ -39,7 +39,7 @@
     </div> 
 
     <div class="ARCHIVO"> 
-        <form class="box" file_class='main_file'>
+        <form class="box" file_class='main_doc_1'>
             <div class="box__input" id='box_input_div'>
                 <input type="file" name="files[]" id="main_file_1" class="box__file" data-multiple-caption="{count} files selected" multiple />
                 <label for="main_file_1" id='label_archivo_1'><span class="box__dragndrop">Cargar </span><strong>archivo en claro</strong>.</label>
@@ -70,6 +70,13 @@
             <label for="file_3"><span class="box__dragndrop">Cargar </span><strong>clave privada</strong>.</label>
         </div>
         </form>
+
+        <div id='psw_container'>
+            <label for="psw">Confirma tu password</label>
+            <input type="password" placeholder="password" name="psw" id="firmar_psw_input" required>
+        </div>
+        
+
     </div> 
 
     <a href="#" class="myButton" id='ejecutar_button_1'>Continuar_update</a>
@@ -79,37 +86,42 @@
     </footer>
 </div>
 
-<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
-
-<script>
-
-    const APARTADO = 1;
-    
-    window.onload=function()  //executes when the page finishes loading
-    {
-        setTimeout(func1, 65);  //sets a timer which calls function func1 after 2,000 milliseconds = 2 secs.
-        
-    };
-    function func1()
-    {
-        document.getElementById("main_container").className="container";
-    }
-</script>
-
-<!-- Third party --> 
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> <!-- Agregar jquery --> 
-
-<!---forge.js - from CDN-->
-<script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
-<!---AES-JS   - from CDN-->
-<script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
-<!---BigInteger.js   - from CDN-->
-<script src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script> 
-
 <!-- local files --> 
-<script src = "./JS/checkboxes_control.js"></script>
-<script src = "./JS/file_manipulation.js"></script>
-<script src = "./JS/cifrado+firma.js"></script>
+    <script src = "./JS/file_manipulation.js"></script>
+    <script src = "./JS/cifrado+firma.js"></script>
+
+    <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+
+    <script>
+
+        var ejecutar_1 = document.getElementById('ejecutar_button_1');
+        ejecutar_1.addEventListener('click', executeActions_1);
+
+        var psw_input = document.getElementById('firmar_psw_input');
+        
+        window.onload=function()  //executes when the page finishes loading
+        {
+            setTimeout(func1, 65);  //sets a timer which calls function func1 after 2,000 milliseconds = 2 secs.
+            
+        };
+        function func1()
+        {
+            document.getElementById("main_container").className="container";
+        }
+    </script>
+
+<!-- Remote JS --> 
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> <!-- Agregar jquery --> 
+        <!-- Local but dependent -->
+        <script src = "./JS/checkboxes_control.js"></script>
+
+    <!---forge.js - from CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
+    <!---AES-JS   - from CDN-->
+    <script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+    <!---BigInteger.js   - from CDN-->
+    <script src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script> 
+
 
 </body>
 </html>
