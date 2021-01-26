@@ -2,7 +2,7 @@
 <html lang="en" class="no-js">
 <head>
 <meta charset="utf-8">
-<title>CriptoAPP</title>
+<title>KRIPTOS | CIFRADO Y FIRMA</title>
 
 <link rel="stylesheet" type="text/css" href="./CSS/general.css" />
 <link rel="stylesheet" type="text/css" href="./CSS/style.css">
@@ -196,11 +196,11 @@
                 // descarga arcivo conjunto
                 console.log('descargando archivo conjunto');
                 file_str = encrypted_hex + SEPARATOR_CONST + signature_hex;
-                downloadTextFile(file_str, full_file_name + '.enc+sign.txt')
+                downloadTextFile(file_str, full_file_name + '.enc+sig')
 
             }else if(signature_hex.length > 0){
                 let file_name = full_file_name.split('.')[0];
-                downloadTextFile(signature_hex, file_name + '.sign.txt')
+                downloadTextFile(signature_hex, file_name + '.sig')
 
             }else if(encrypted_hex.length > 0){
                 let substrings = full_file_name.split('.');
