@@ -90,7 +90,17 @@ Array.prototype.forEach.call( forms, function( form )
                         if(file_class=='main_doc_1'){
                             doc_content = e.target.result; //base64 formar
                         }else if(file_class=='main_doc_2'){
-                            doc_content = e.target.result
+                            // descifrar/verificar
+                            doc_content = e.target.result;
+
+                            substrings = doc_content.split(SEPARATOR_CONST);
+                            if(substrings.length > 1){
+                                // separa documento y firma
+                                console.log('Separando doc y firma'); 
+                                doc_content = substrings[0];
+                                signature_hex = substrings[1];
+                            }
+
                         }
                         
                         //console.log(cadena_original)
@@ -176,7 +186,7 @@ Array.prototype.forEach.call( forms, function( form )
 
                 }else{
                     reader.readAsText(fileSelection.files[0]);
-                    
+
                 }
                 
                 //file_extension = file_name.split('.')[1];

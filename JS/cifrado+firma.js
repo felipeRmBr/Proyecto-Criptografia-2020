@@ -11,90 +11,244 @@ var public_exp_hex;
 var public_RSA_key;
 var private_RSA_key;
 
-var decryptedText;
-var file_name;
+var encrypted_hex = '';
+var signature_hex = '';
+
+var decrypted_doc = '';
+var verification_resutl = false;
+
 
 function executeActions_1(){
     if(firmar_check_state==1 && cifrar_check_state==-1){
         console.log('FIRMANDO EL DOCUMENTO');
 
-        let password = psw_input.value;
-        if(decryptPrivKey(encr_priv_key_hex, password)){
-            signDocumet(doc_content);
+        try {
+            let password = psw_input.value;
+            if(decryptPrivKey(encr_priv_key_hex, password)){
+                console.log('Password correcto. Firmando.')
+                signature_hex = signDocumet(doc_content);
+                return 1;
+            }else{
+                alert('Password incorrecto. Vuelve a intentarlo.')
+                return -1;
+            }
+        } catch (error) {
+          console.log('Error desconocido');  
+          console.error(error);
+          return -4; //means decryption feilure
+          // expected output: ReferenceError: nonExistentFunction is not defined
+          // Note - error messages will vary depending on browser
         }
+
 
     }else if(firmar_check_state==-1 && cifrar_check_state==1){
         console.log('CIFRANDO EL DOCUMENTO');
 
-        var key = fromHexStrToArray(simmetric_key_hex);
-        console.log('This is the key: ', key);
+        try {
+            var key = fromHexStrToArray(simmetric_key_hex);
+            console.log('This is the key: ', key);
 
-        let encrypted_hex = doCipher(doc_content, key, 'base64'); //input in format base64
+            encrypted_hex = doCipher(ID_TAG+SEPARATOR_CONST+doc_content, key, 'base64'); //input in format base64   
+            return 2;
+        } catch (error) {
+          console.log('Error desconocido');  
+          console.error(error);
+          return -4; //means decryption feilure
+          // expected output: ReferenceError: nonExistentFunction is not defined
+          // Note - error messages will vary depending on browser
+        }
 
+        /*
         let substrings = full_file_name.split('.');
         let file_name = substrings[0];
         let file_extension = substrings[1];
 
         downloadTextFile(encrypted_hex, full_file_name + '.enc')
+        */
 
     }else if(firmar_check_state==1 && cifrar_check_state==1){
         console.log('FIRMANDO Y CIFRANDO');
 
-        let password = psw_input.value;
-        if(decryptPrivKey(encr_priv_key_hex, password)){
-            // firmamos el documento original
-            signDocumet(doc_content);
-        }else{
-            alert('Password incorrecto. Vuelve a intentarlo.')
+        let process_1_result = 0;
+        let process_2_result = 0;
+
+        /*****TRY FIRMA*******/
+        try {
+            let password = psw_input.value;
+            if(decryptPrivKey(encr_priv_key_hex, password)){
+                console.log('Password correcto. Firmando.')
+                signature_hex = signDocumet(doc_content);
+                process_1_result = 1;
+            }else{
+                alert('Password incorrecto. Vuelve a intentarlo.')
+                return -1;
+            }
+        } catch (error) {
+          console.log('Error desconocido');  
+          console.error(error);
+          return -4; //means decryption feilure
+          // expected output: ReferenceError: nonExistentFunction is not defined
+          // Note - error messages will vary depending on browser
         }
 
-        var key = fromHexStrToArray(simmetric_key_hex);
-        console.log('This is the simmetric key: ', key);
 
-        let encrypted_hex = doCipher(doc_content, key, 'base64'); //input in format base64
+        try {
+            var key = fromHexStrToArray(simmetric_key_hex);
+            console.log('This is the key: ', key);
 
-        let substrings = full_file_name.split('.');
-        let file_name = substrings[0];
-        let file_extension = substrings[1];
+            encrypted_hex = doCipher(ID_TAG+SEPARATOR_CONST+doc_content, key, 'base64'); //input in format base64   
+            return 3;
+        } catch (error) {
+          console.log('Error desconocido');  
+          console.error(error);
+          return -4; //means decryption feilure
+          // expected output: ReferenceError: nonExistentFunction is not defined
+          // Note - error messages will vary depending on browser
+        }
 
-        downloadTextFile(encrypted_hex, full_file_name + '.enc')
     }
 }
 
 function executeActions_2(){
     if(verificar_check_state==1 && descifrar_check_state==-1){
-        console.log('VERIFICANDO EL DOCUMENTO');
-        verifySignature(signature_hex, doc_content);
+        try {
+            console.log('VERIFICANDO EL DOCUMENTO');
+            verification_resutl = verifySignature(signature_hex, doc_content);
+            if(verification_resutl){
+                console.log('verificación´Exitosa');
+                return 1; //verification succes
+            }else{
+                console.log('verificación´Fallida');
+                return -1;
+            }
+            
+        } catch (error) {
+          console.log('Error desconocido');  
+          console.error(error);
+          return -4; //means decryption feilure
+          // expected output: ReferenceError: nonExistentFunction is not defined
+          // Note - error messages will vary depending on browser
+        }
     }else if(verificar_check_state==-1 && descifrar_check_state==1){
         console.log('DESCIFRANDO EL DOCUMENTO');
 
-        var key = fromHexStrToArray(simmetric_key_hex);
-        console.log('This is the key: ', key);
+        try {
+            var key = fromHexStrToArray(simmetric_key_hex);
+            console.log('This is the key: ', key);
 
-        var decrypted_doc = doDecipher(doc_content, key, 'base64') //output in format base64
+            decrypted_doc = doDecipher(doc_content, key, 'base64') //output in format base64
 
+            substrings = decrypted_doc.split(SEPARATOR_CONST);
+
+            if(substrings.length==2){
+                if(substrings[0]==ID_TAG){
+                    console.log('Descifrado exitoso');
+                    decrypted_doc = substrings[1];
+                    return 2;
+                }else{
+                    console.log('Descifrado fallido');
+                    return -2;
+                }
+            }else{
+                console.log('Descifrado fallido');
+                return -2;
+            }
+        } catch (error) {
+          console.log('Descifrado fallido');  
+          console.error(error);
+          return -2; //means decryption feilure
+          // expected output: ReferenceError: nonExistentFunction is not defined
+          // Note - error messages will vary depending on browser
+        }
+
+        /*
         let substrings = full_file_name.split('.');
         let file_name = substrings[0];
         let file_extension = substrings[1];
 
         console.log(decrypted_doc)
         downloadDecryptedDoc(decrypted_doc, file_name + '.recovered.' + file_extension);
+        */
 
     }else if(verificar_check_state==1 && descifrar_check_state==1){
         console.log('VERIFICANDO Y DESCIFRANDO');
 
-        var key = fromHexStrToArray(simmetric_key_hex);
-        console.log('This is the key: ', key);
+        let prcess_result_1 = 0;
+        let prcess_result_2 = 0;
 
-        var decrypted_doc = doDecipher(doc_content, key, 'base64') //output in format base64
+        /*******BIG TRY*******/
+        try {
+            /*****TRY DECRYPTION******/
+            try {
+                var key = fromHexStrToArray(simmetric_key_hex);
+                console.log('This is the key: ', key);
 
-        verifySignature(signature_hex, decrypted_doc);
+                decrypted_doc = doDecipher(doc_content, key, 'base64') //output in format base64
 
+                substrings = decrypted_doc.split(SEPARATOR_CONST);
+
+                if(substrings.length==2){
+                    if(substrings[0]==ID_TAG){
+                        console.log('Descifrado exitoso');
+                        decrypted_doc = substrings[1];
+                        prcess_result_1= 2;
+                    }else{
+                        console.log('Descifrado fallido');
+                        prcess_result_1= -2;
+                    }
+                }else{
+                    console.log('Descifrado fallido');
+                    prcess_result_1= -2;
+                }
+            } catch (error) {
+              console.log('Descifrado fallido');  
+              console.error(error);
+              prcess_result_1= -2; //means decryption feilure
+              // expected output: ReferenceError: nonExistentFunction is not defined
+              // Note - error messages will vary depending on browser
+            }
+
+            /*******TRY VERIFICATION******/
+            try {
+                console.log('VERIFICANDO EL DOCUMENTO');
+                verification_resutl = verifySignature(signature_hex, decrypted_doc);
+                if(verification_resutl){
+                    console.log('verificación´Exitosa');
+                    prcess_result_2= 1; //verification succes
+                }else{
+                    console.log('verificación´Fallida');
+                    prcess_result_2= -1;
+                }
+                
+            } catch (error) {
+              console.log('Error desconocido');  
+              console.error(error);
+              prcess_result_2=-4; //means decryption feilure
+              // expected output: ReferenceError: nonExistentFunction is not defined
+              // Note - error messages will vary depending on browser
+            }
+
+            if(prcess_result_1>0 && prcess_result_2>0){
+               return 3;
+            }else if(prcess_result_1>0){
+               // descifrado exitoso verif fallida
+               return 7;
+            }else if(prcess_result_2>0){
+               // descifrado fallido verif exitosa
+               return 6;
+            }
+
+        } catch (error) {
+          return -4;
+        }
+
+        /*
         let substrings = full_file_name.split('.');
         let file_name = substrings[0];
         let file_extension = substrings[1];
 
         downloadDecryptedDoc(decrypted_doc, file_name + '.recovered.' + file_extension);
+        */
     }
 }
 
@@ -193,11 +347,12 @@ function signDocumet(plain_text){
     console.log('GENERANDO BLOQUE DE FIRMA')
 
     var signature = md.modPow(priv_exp, modulus);
+    var signature_hex = signature.toString(16);
+
     console.log('This is signature_hx: ', signature);
     console.log('This is signature_hx: ', signature.toString(16));
 
-    let file_name = full_file_name.split('.')[0];
-    downloadTextFile(signature.toString(16), file_name + '.sign.txt')
+    return signature_hex;
 }
 
 
@@ -230,8 +385,10 @@ function verifySignature(signature_hex, plain_text){
 
     if(verify.equals(md)){
         console.log('EUREKA. VERIFICACION COMPLETA');
+        return true;
     }else{
         console.log('CRAPS!!, ALGO SALIO MAL');
+        return false;
     }
 }
 

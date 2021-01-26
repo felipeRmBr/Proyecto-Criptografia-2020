@@ -29,61 +29,93 @@
         <a href="./diffie.html">Diffie Hellman</a>
     </nav>
 
-    <div class="checks-group cifrado_y_firma"> 
-        <label class='check_container'> 
-            <input type="checkbox" name="colorCheckbox" 
-                   value="CIFRAR_CHECK" checked required> cifrar</label> 
-        <label class='check_container'> 
-            <input type="checkbox" name="colorCheckbox" 
-                   value="FIRMAR_CHECK" checked required> firmar</label> 
-    </div> 
+    <div id="screen_1">
+        <div class="checks-group cifrado_y_firma"> 
+            <label class='check_container'> 
+                <input type="checkbox" name="colorCheckbox" 
+                       value="CIFRAR_CHECK" checked required> cifrar</label> 
+            <label class='check_container'> 
+                <input type="checkbox" name="colorCheckbox" 
+                       value="FIRMAR_CHECK" checked required> firmar</label> 
+        </div> 
 
-    <div class="ARCHIVO"> 
-        <form class="box" file_class='main_doc_1'>
-            <div class="box__input" id='box_input_div'>
-                <input type="file" name="files[]" id="main_file_1" class="box__file" data-multiple-caption="{count} files selected" multiple />
-                <label for="main_file_1" id='label_archivo_1'><span class="box__dragndrop">Cargar </span><strong>archivo en claro</strong>.</label>
-            </div>
-
-            <div id="progress_bar">
-                <div class="percent">
-                    0%
+        <div class="ARCHIVO"> 
+            <form class="box" file_class='main_doc_1'>
+                <div class="box__input" id='box_input_div'>
+                    <input type="file" name="files[]" id="main_file_1" class="box__file" data-multiple-caption="{count} files selected" multiple />
+                    <label for="main_file_1" id='label_archivo_1'><span class="box__dragndrop">Cargar </span><strong>archivo en claro</strong>.</label>
                 </div>
+
+                <div id="progress_bar">
+                    <div class="percent">
+                        0%
+                    </div>
+                </div>
+
+            </form>
+        </div> 
+
+        <div class="CIFRAR_CHECK selectt"> 
+            <form class="box" file_class='simmetric_key'>
+            <div class="box__input">
+                <input type="file" name="files[]" id="file_2" class="box__file" data-multiple-caption="{count} files selected" multiple />
+                <label for="file_2"><span class="box__dragndrop">Cargar </span><strong>clave simétrica</strong>.</label>
             </div>
+            </form>
+        </div> 
 
-        </form>
-    </div> 
+        <div class="FIRMAR_CHECK selectt">
+            <form class="box" file_class='private_key'>
+            <div class="box__input">
+                <input type="file" name="files[]" id="file_3" class="box__file" data-multiple-caption="{count} files selected" multiple />
+                <label for="file_3"><span class="box__dragndrop">Cargar </span><strong>clave privada</strong>.</label>
+            </div>
+            </form>
 
-    <div class="CIFRAR_CHECK selectt"> 
-        <form class="box" file_class='simmetric_key'>
-        <div class="box__input">
-            <input type="file" name="files[]" id="file_2" class="box__file" data-multiple-caption="{count} files selected" multiple />
-            <label for="file_2"><span class="box__dragndrop">Cargar </span><strong>clave simétrica</strong>.</label>
+            <div id='psw_container'>
+                <label for="psw">Confirma tu password</label>
+                <input type="password" placeholder="password" name="psw" id="firmar_psw_input" required>
+            </div>
+            
+
+        </div> 
+
+        <a href="#" class="myButton" id='ejecutar_button_1'>Continuar</a>
+
+    </div>
+
+    <div class='secondary_screen' id='screen_2'>
+        <div class = 'message_container'>
+
+        <br>
+
+        <h3>La operación se completo con éxito</h3>
+        <p>Haz click en el boton de abajo para descergar el archivo generado.</p>
+
         </div>
-        </form>
-    </div> 
 
-    <div class="FIRMAR_CHECK selectt">
-        <form class="box" file_class='private_key'>
-        <div class="box__input">
-            <input type="file" name="files[]" id="file_3" class="box__file" data-multiple-caption="{count} files selected" multiple />
-            <label for="file_3"><span class="box__dragndrop">Cargar </span><strong>clave privada</strong>.</label>
+        <a href="#" class="myButton" id='download_button'>Descargar archivo</a>
+
+    </div>
+
+    <div class='secondary_screen' id='screen_3'>
+        <div class = 'message_container'>
+
+        <h3>Error desconocido.</h3>
+        <p>Lo sentimos. La operación solicitada no funcionó como debía. Por favor vuelve a intentarlo</p>
+
         </div>
-        </form>
 
-        <div id='psw_container'>
-            <label for="psw">Confirma tu password</label>
-            <input type="password" placeholder="password" name="psw" id="firmar_psw_input" required>
-        </div>
-        
+        <a href="#" class="myButton" id='accept_button'>Aceptar</a>
 
-    </div> 
+    </div>
 
-    <a href="#" class="myButton" id='ejecutar_button_1'>Continuar_update</a>
-
+    <!-- 
     <footer>
         <p><strong>Para verificar <a href="" target="_blank">FlatIcon</a>.</p>
     </footer>
+     -->
+    
 </div>
 
 <!-- local files --> 
@@ -92,10 +124,105 @@
 
     <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
 
-    <script>
+    <script type="text/javascript">
+        // GLOBAL VARIABLES
+        var signature_hex = '';
+        var encrypted_hex = '';
+        var full_file_name = '';
 
-        var ejecutar_1 = document.getElementById('ejecutar_button_1');
-        ejecutar_1.addEventListener('click', executeActions_1);
+    </script>
+    
+
+    <script>
+        // SCREENS
+        let screen_1 = document.getElementById('screen_1');
+        let screen_2 = document.getElementById('screen_2');
+        let screen_3 = document.getElementById('screen_3');
+
+        // BUTTONS AND CALLS TO ACTION
+        let ejecutar_1 = document.getElementById('ejecutar_button_1');
+        ejecutar_1.addEventListener('click', runSelectedActions);
+
+        let download_button = document.getElementById('download_button');
+        download_button.addEventListener('click', downloadAvailableFiles);
+
+        let boton_aceptar = document.getElementById('accept_button');
+        boton_aceptar.addEventListener('click', resetPage);
+
+        function runSelectedActions(){
+            let porcess_result = executeActions_1();
+            showNewScreen(porcess_result);
+        }
+
+        function showNewScreen(porcess_result){
+            if(porcess_result==1){
+                console.log('caller: firmado exitoso');
+                showScreen2();
+            }else if(porcess_result==2){
+                console.log('caller: cifrado exitoso');
+                showScreen2();
+            }else if(porcess_result==3){
+                console.log('caller: cifrado y firma exitosos');
+                showScreen2();
+            }else if(porcess_result==-1){
+                console.log('caller: password incorrecto');
+            }else{
+                console.log('caller: error desconocido');
+                showScreen3();
+            }
+        }
+
+        function hideAllScreens(){
+            screen_1.style.display = 'none';
+            screen_2.style.display = 'none';
+            screen_3.style.display = 'none';
+        }
+
+        function showScreen2(){
+            hideAllScreens();
+            screen_2.style.display = 'block';
+        }
+
+        function showScreen3(){
+            hideAllScreens();
+            screen_3.style.display = 'block';
+        }
+
+        // FUNCTIONS
+        function downloadAvailableFiles(){
+            console.log('Downloading files');
+
+            if(signature_hex.length > 0 && encrypted_hex.length > 0){
+                // descarga arcivo conjunto
+                console.log('descargando archivo conjunto');
+                file_str = encrypted_hex + SEPARATOR_CONST + signature_hex;
+                downloadTextFile(file_str, full_file_name + '.enc+sign.txt')
+
+            }else if(signature_hex.length > 0){
+                let file_name = full_file_name.split('.')[0];
+                downloadTextFile(signature_hex, file_name + '.sign.txt')
+
+            }else if(encrypted_hex.length > 0){
+                let substrings = full_file_name.split('.');
+                let file_name = substrings[0];
+                let file_extension = substrings[1];
+
+                downloadTextFile(encrypted_hex, full_file_name + '.enc')
+
+            }else{
+                console.log('No hay archivos disponibles')
+
+            }
+
+            //move back to main
+            window.location.href="cifrar.html";
+        }
+
+        function resetPage(){
+            window.location.href="cifrar.html";
+        }
+
+
 
         var psw_input = document.getElementById('firmar_psw_input');
         

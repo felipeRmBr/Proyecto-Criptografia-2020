@@ -26,56 +26,143 @@
         <a href="./diffie.html">Diffie Hellman</a>
     </nav>
 
-    <div class="checks-group cifrado_y_firma"> 
-        <label class='check_container'> 
-            <input type="checkbox" name="colorCheckbox" 
-                   value="DESCIFRAR_CHECK" checked required> descifrar</label> 
-        <label class='check_container'> 
-            <input type="checkbox" name="colorCheckbox" 
-                   value="VERIFICAR_CHECK" checked required> verificar</label> 
-    </div> 
+    <div id = 'screen_1'>
+        <div class="checks-group cifrado_y_firma"> 
+            <label class='check_container'> 
+                <input type="checkbox" name="colorCheckbox" 
+                       value="DESCIFRAR_CHECK" checked required> descifrar</label> 
+            <label class='check_container'> 
+                <input type="checkbox" name="colorCheckbox" 
+                       value="VERIFICAR_CHECK" checked required> verificar</label> 
+        </div> 
 
-    <div class="ARCHIVO"> 
-        <form class="box" file_class='main_doc_2'>
-            <div class="box__input" id='box_input_div'>
-                <input type="file" name="files[]" id="main_file_2" class="box__file" data-multiple-caption="{count} files selected" multiple />
-                <label for="main_file_2" id = 'label_archivo_2'><span class="box__dragndrop">Cargar </span><strong>archivo cifrado</strong>.</label>
+        <div class="ARCHIVO"> 
+            <form class="box" file_class='main_doc_2'>
+                <div class="box__input" id='box_input_div'>
+                    <input type="file" name="files[]" id="main_file_2" class="box__file" data-multiple-caption="{count} files selected" multiple />
+                    <label for="main_file_2" id = 'label_archivo_2'><span class="box__dragndrop">Cargar </span><strong>archivo conjunto (.enc+sig)</strong>.</label>
+                </div>
+
+                <div id="progress_bar">
+                        <div class="percent">
+                            0%
+                        </div>
+                </div>
+            </form>
+        </div> 
+
+        <div class="DESCIFRAR_CHECK selectt"> 
+            <form class="box" file_class='simmetric_key'>
+            <div class="box__input">
+                <input type="file" name="files[]" id="file_sim_key" class="box__file" data-multiple-caption="{count} files selected" multiple />
+                <label for="file_sim_key"><span class="box__dragndrop">Cargar </span><strong>clave simétrica</strong>.</label>
             </div>
+            </form>
+        </div> 
 
-            <div id="progress_bar">
-                    <div class="percent">
-                        0%
-                    </div>
+        <div class="VERIFICAR_CHECK selectt">
+            <form class="box" file_class='signature_file' id = 'signature_box' style="display:none">
+            <div class="box__input">
+                <input type="file" name="files[]" id="file_dignature" class="box__file" data-multiple-caption="{count} files selected" multiple />
+                <label for="file_dignature"><span class="box__dragndrop">Cargar </span><strong>archivo de firma</strong>.</label>
             </div>
-        </form>
-    </div> 
+            </form>
 
-    <div class="DESCIFRAR_CHECK selectt"> 
-        <form class="box" file_class='simmetric_key'>
-        <div class="box__input">
-            <input type="file" name="files[]" id="file_sim_key" class="box__file" data-multiple-caption="{count} files selected" multiple />
-            <label for="file_sim_key"><span class="box__dragndrop">Cargar </span><strong>clave simétrica</strong>.</label>
+            <form class="box" file_class='public_key'>
+            <div class="box__input">
+                <input type="file" name="files[]" id="file_public_key" class="box__file" data-multiple-caption="{count} files selected" multiple />
+                <label for="file_public_key"><span class="box__dragndrop">Cargar </span><strong>clave pública</strong>.</label>
+            </div>
+            </form>
+        </div> 
+
+        <a href="#" class="myButton" id='ejecutar_button_2'>Continuar</a>
+        
+    </div>
+
+    <div class='secondary_screen' id='screen_2'>
+        <div class = 'message_container'>
+
+        <br>
+
+        <h3>Verificación exitosa.</h3>
+        <p>La verificación fue positiva; esto significa que el documento no ha sido alterado y que la firma fue generada por tu contacto.</p>
+
         </div>
-        </form>
-    </div> 
 
-    <div class="VERIFICAR_CHECK selectt">
-        <form class="box" file_class='signature_file'>
-        <div class="box__input">
-            <input type="file" name="files[]" id="file_dignature" class="box__file" data-multiple-caption="{count} files selected" multiple />
-            <label for="file_dignature"><span class="box__dragndrop">Cargar </span><strong>archivo de firma</strong>.</label>
+        <a href="#" class="myButton" id='boton_aceptar_1'>Aceptar</a>
+
+    </div>
+
+    <div class='secondary_screen' id='screen_3'>
+        <div class = 'message_container'>
+
+        <br>
+
+        <h3>Descifrado exitoso.</h3>
+        <p>El proceso de descifrado concluyo de manera exitosa. Haz click en el boton de abajo para descargar el documento recuperado.</p>
+
         </div>
-        </form>
 
-        <form class="box" file_class='public_key'>
-        <div class="box__input">
-            <input type="file" name="files[]" id="file_public_key" class="box__file" data-multiple-caption="{count} files selected" multiple />
-            <label for="file_public_key"><span class="box__dragndrop">Cargar </span><strong>clave pública</strong>.</label>
+        <a href="#" class="myButton" id='download_button_1'>Descargar archivo</a>
+
+    </div>
+
+    <div class='secondary_screen' id='screen_4'>
+        <div class = 'message_container'>
+
+        <br>
+
+        <h3>Descifrado y verificación exitosos.</h3>
+        <p>El proceso de descifrado y verificación concluyeron de manera exitosa. Haz click en el boton de abajo para descargar el documento recuperado.</p>
+
         </div>
-        </form>
-    </div> 
 
-    <a href="#" class="myButton" id='ejecutar_button_2'>Continuar</a>
+        <a href="#" class="myButton" id='download_button_2'>Descargar archivo</a>
+
+    </div>
+
+    <div class='secondary_screen' id='screen_5'>
+        <div class = 'message_container'>
+
+        <br>
+
+        <h3>Verificación Fallida.</h3>
+        <p>La verificación de la firma digital fue negativa. Esto significa que el documento fue alterado o que la firma no fue generada por tu contacto.</p>
+
+        </div>
+
+        <a href="#" class="myButton" id='boton_aceptar_2'>Aceptar</a>
+
+    </div>
+
+    <div class='secondary_screen' id='screen_6'>
+        <div class = 'message_container'>
+
+        <br>
+
+        <h3>Descifrado fallido.</h3>
+        <p>El documento no se pudo descifrar correctamente.</p>
+
+        </div>
+
+        <a href="#" class="myButton" id='boton_aceptar_3'>Aceptar</a>
+
+    </div>
+
+    <div class='secondary_screen' id='screen_7'>
+        <div class = 'message_container'>
+
+        <br>
+
+        <h3>Error desconocido.</h3>
+        <p>Ocurrio un error desconocido. Por favor vuelve a intenatarlo.</p>
+
+        </div>
+
+        <a href="#" class="myButton" id='boton_aceptar_4'>Aceptar</a>
+
+    </div>
 
 </div>
 
@@ -84,8 +171,128 @@
     <script src = "./JS/cifrado+firma.js"></script>
 
     <script type="text/javascript">
+
+        var decrypted_doc = '';
+        
+
+        // SCREENS
+        let screen_1 = document.getElementById('screen_1');
+        let screen_2 = document.getElementById('screen_2');
+        let screen_3 = document.getElementById('screen_3');
+        let screen_4 = document.getElementById('screen_4');
+
+        // BUTTONS AND CALLS TO ACTION
         var ejecutar_2 = document.getElementById('ejecutar_button_2');
-        ejecutar_2.addEventListener('click', executeActions_2);
+        ejecutar_2.addEventListener('click', runSelectedActions);
+
+        let download_button_1 = document.getElementById('download_button_1');
+        download_button_1.addEventListener('click', downloadAvailableFiles);
+
+        let download_button_2 = document.getElementById('download_button_2');
+        download_button_2.addEventListener('click', downloadAvailableFiles);
+
+        // botones aceptar
+        // BUTTONS AND CALLS TO ACTION
+        var aceptar_1 = document.getElementById('boton_aceptar_1');
+        var aceptar_2 = document.getElementById('boton_aceptar_2');
+        var aceptar_3 = document.getElementById('boton_aceptar_3');
+        var aceptar_4 = document.getElementById('boton_aceptar_4');
+        aceptar_1.addEventListener('click', resetPage);
+        aceptar_2.addEventListener('click', resetPage);
+        aceptar_3.addEventListener('click', resetPage);
+        aceptar_4.addEventListener('click', resetPage);
+
+
+        function runSelectedActions(){
+            let porcess_result = executeActions_2();
+            showNewScreen(porcess_result);
+        }
+
+        function showNewScreen(porcess_result){
+            if(porcess_result==1){
+                console.log('caller: verificación exitosa');
+                showScreen2();
+            }else if(porcess_result==2){
+                console.log('caller: descifrado exitoso');
+                showScreen3();
+            }else if(porcess_result==3){
+                console.log('caller: descifrado y verif exitosos');
+                showScreen4();
+            }else if(porcess_result==-1){
+                console.log('caller: verificación fallida');
+                showScreen5();
+            }else if(porcess_result==-2){
+                console.log('caller: descifrado fallida');
+                showScreen6();
+            }else{
+                console.log('caller: error desconocido');
+                showScreen7();
+            }
+        }
+
+        function hideAllScreens(){
+            screen_1.style.display = 'none';
+            screen_2.style.display = 'none';
+            screen_3.style.display = 'none';
+            screen_4.style.display = 'none';
+            screen_5.style.display = 'none';
+            screen_6.style.display = 'none';
+        }
+
+        function showScreen2(){
+            hideAllScreens();
+            screen_2.style.display = 'block';
+        }
+
+        function showScreen3(){
+            hideAllScreens();
+            screen_3.style.display = 'block';
+        }
+
+        function showScreen4(){
+            hideAllScreens();
+            screen_4.style.display = 'block';
+        }
+
+        function showScreen5(){
+            hideAllScreens();
+            screen_5.style.display = 'block';
+        }
+
+        function showScreen6(){
+            hideAllScreens();
+            screen_6.style.display = 'block';
+        }
+
+        function showScreen7(){
+            hideAllScreens();
+            screen_7.style.display = 'block';
+        }
+
+        // FUNCTIONS
+        function downloadAvailableFiles(){
+            
+
+            if(decrypted_doc.length>0){
+                console.log('Downloading files');
+
+                let substrings = full_file_name.split('.');
+                let file_name = substrings[0];
+                let file_extension = substrings[1];
+                //console.log(decrypted_doc)
+                downloadDecryptedDoc(decrypted_doc, file_name + '.recovered.' + file_extension);
+
+            }else{
+                console.log('No files available');
+            }
+            
+            window.location.href="descifrar.html";
+        }
+
+        function resetPage(){
+            window.location.href="descifrar.html";
+        }
+
         
         window.onload=function()  //executes when the page finishes loading
         {
@@ -96,6 +303,7 @@
         {
             document.getElementById("main_container").className="container";
         }
+
     </script>
 
     <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
