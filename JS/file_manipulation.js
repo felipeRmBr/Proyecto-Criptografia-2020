@@ -1,5 +1,5 @@
 var SEPARATOR_CONST = '/******/';
-var doc_content;  // base64 formar
+var doc_content;  // main file content
 
 // PARA FIRMA Y VERIFICACIÓN
 var modulus_hex;
@@ -131,12 +131,12 @@ Array.prototype.forEach.call( forms, function( form )
 
 
                     }else if(file_class=='private_key'){
-                        encr_priv_key_hex = e.target.result;  //base64 formar
+                        encr_priv_key_hex = e.target.result;
 
                         console.log('private_RSA_key recuperada: ', encr_priv_key_hex);
 
                     }else if(file_class=='public_key'){
-                        var public_RSA_key = e.target.result;  //base64 formar
+                        var public_RSA_key = e.target.result;
                         let substrings = public_RSA_key.split(SEPARATOR_CONST);
 
                         modulus_hex = substrings[0];
@@ -148,7 +148,7 @@ Array.prototype.forEach.call( forms, function( form )
 
                     }else if(file_class=='dh_public_variables'){
                         //console.log('estoy entrando a un if incorrecto!!!')
-                        var dh_share_str = e.target.result;  //base64 formar
+                        var dh_share_str = e.target.result; 
                         let substrings = dh_share_str.split('SEPARATOR_TAG');
 
                         base_dh_str =  substrings[0];
@@ -161,7 +161,7 @@ Array.prototype.forEach.call( forms, function( form )
 
 
                     }else if(file_class=='dh_private_exponent'){
-                        exponent_dh_str = e.target.result;  //base64 formar
+                        exponent_dh_str = e.target.result;
                         console.log('exponente recuperado: ', exponent_dh_str);
 
                     }
@@ -188,18 +188,16 @@ Array.prototype.forEach.call( forms, function( form )
                     reader.readAsText(fileSelection.files[0]);
 
                 }
-                
-                //file_extension = file_name.split('.')[1];
+
             }
             else { //this is where you could fallback to Java Applet, Flash or similar
                 console.log('No se leyo ningún archivo')
                 return false;
-
             }       
             return true;
         };   
 
-    //Muestra los archivos cargados
+    // Actions when a file is selected
     input.addEventListener( 'change', function( element )
     {
         readSelectedFile(element.target);

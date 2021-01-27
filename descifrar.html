@@ -6,16 +6,6 @@
 <title>KRIPTOS | DESCIFRAR</title>
 <link rel="stylesheet" type="text/css" href="./CSS/general.css" />
 
-<style id="" media="all">/* cyrillic-ext */
-    @font-face {
-      font-family: 'Roboto';
-      font-style: italic;
-      font-weight: 300;
-      src: url(/fonts.gstatic.com/s/roboto/v20/KFOjCnqEu92Fr1Mu51TjASc3CsTKlA.woff2) format('woff2');
-      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-    }
-</style>
-
 </head>
 
 <body>
@@ -155,12 +145,24 @@
 
         <br>
 
-        <h3>Error desconocido.</h3>
-        <p>Ocurrio un error desconocido. Por favor vuelve a intenatarlo.</p>
+        <h3>Algo salió mal =(.</h3>
+        <p>Lo sentimos. La operación solicitada no funcionó como debía. Por favor vuelve a intentarlo.</p>
 
         </div>
 
         <a href="#" class="myButton" id='boton_aceptar_4'>Aceptar</a>
+
+    </div>
+
+    <div class='secondary_screen' id='screen_8'>
+        <div class = 'message_container'>
+
+        <br>
+
+        <h3>Trabajando...</h3>
+        <p>La aplicación está trabajando en las operaciones solicitadas. Por favor espera unos segundos.</p>
+
+        </div>
 
     </div>
 
@@ -173,17 +175,20 @@
     <script type="text/javascript">
 
         var decrypted_doc = '';
-        
 
         // SCREENS
         let screen_1 = document.getElementById('screen_1');
         let screen_2 = document.getElementById('screen_2');
         let screen_3 = document.getElementById('screen_3');
         let screen_4 = document.getElementById('screen_4');
+        let screen_5 = document.getElementById('screen_5');
+        let screen_6 = document.getElementById('screen_6');
+        let screen_7 = document.getElementById('screen_7');
+        let screen_8 = document.getElementById('screen_8');
 
         // BUTTONS AND CALLS TO ACTION
         var ejecutar_2 = document.getElementById('ejecutar_button_2');
-        ejecutar_2.addEventListener('click', runSelectedActions);
+        ejecutar_2.addEventListener('click', showWorkingScreen);
 
         let download_button_1 = document.getElementById('download_button_1');
         download_button_1.addEventListener('click', downloadAvailableFiles);
@@ -191,8 +196,7 @@
         let download_button_2 = document.getElementById('download_button_2');
         download_button_2.addEventListener('click', downloadAvailableFiles);
 
-        // botones aceptar
-        // BUTTONS AND CALLS TO ACTION
+        // ACCEPT BUTTONS
         var aceptar_1 = document.getElementById('boton_aceptar_1');
         var aceptar_2 = document.getElementById('boton_aceptar_2');
         var aceptar_3 = document.getElementById('boton_aceptar_3');
@@ -202,6 +206,13 @@
         aceptar_3.addEventListener('click', resetPage);
         aceptar_4.addEventListener('click', resetPage);
 
+
+        function showWorkingScreen(){
+            console.log('Show working...')
+            hideAllScreens();
+            screen_8.style.display = 'block';
+            setTimeout(runSelectedActions, 500);
+        }
 
         function runSelectedActions(){
             let porcess_result = executeActions_2();
@@ -225,7 +236,7 @@
                 console.log('caller: descifrado fallida');
                 showScreen6();
             }else{
-                console.log('caller: error desconocido');
+                console.log('caller: error desconocido (mixto)');
                 showScreen7();
             }
         }
@@ -237,6 +248,8 @@
             screen_4.style.display = 'none';
             screen_5.style.display = 'none';
             screen_6.style.display = 'none';
+            screen_7.style.display = 'none';
+            screen_8.style.display = 'none';
         }
 
         function showScreen2(){
@@ -293,7 +306,9 @@
             window.location.href="descifrar.html";
         }
 
-        
+    </script>
+
+    <script type="text/javascript">
         window.onload=function()  //executes when the page finishes loading
         {
             setTimeout(func1, 65);  //sets a timer which calls function func1 after 2,000 milliseconds = 2 secs.
@@ -303,11 +318,11 @@
         {
             document.getElementById("main_container").className="container";
         }
-
     </script>
 
     <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
 
+    
 <!-- THIRD PARTY --> 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> <!-- Agregar jquery --> 
         <!-- Local but dependent -->

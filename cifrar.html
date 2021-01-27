@@ -7,17 +7,6 @@
 <link rel="stylesheet" type="text/css" href="./CSS/general.css" />
 <link rel="stylesheet" type="text/css" href="./CSS/style.css">
 
-
-<style id="" media="all">/* cyrillic-ext */
-    @font-face {
-      font-family: 'Roboto';
-      font-style: normal;
-      font-weight: 200;
-      src: url(/Roboto/Roboto-Regular.ttf) format('ttf');
-      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-    }
-</style>
-
 </head>
 
 <body>
@@ -101,12 +90,40 @@
     <div class='secondary_screen' id='screen_3'>
         <div class = 'message_container'>
 
-        <h3>Error desconocido.</h3>
+        <br>
+
+        <h3>Password incorrecto.</h3>
+        <p>El password que ingresaste es incorrecto. Por favor vuelve a intentarlo</p>
+
+        </div>
+
+        <a href="#" class="myButton" id='accept_button_2'>Aceptar</a>
+
+    </div>
+
+    <div class='secondary_screen' id='screen_4'>
+        <div class = 'message_container'>
+
+        <br>
+
+        <h3>Algo salió mal =(.</h3>
         <p>Lo sentimos. La operación solicitada no funcionó como debía. Por favor vuelve a intentarlo</p>
 
         </div>
 
         <a href="#" class="myButton" id='accept_button'>Aceptar</a>
+
+    </div>
+
+    <div class='secondary_screen' id='screen_5'>
+        <div class = 'message_container'>
+
+        <br>
+
+        <h3>Trabajando...</h3>
+        <p>La aplicación está trabajando en las operaciones solicitadas. Por favor espera unos segundos.</p>
+
+        </div>
 
     </div>
 
@@ -134,20 +151,35 @@
     
 
     <script>
+
+        var psw_input = document.getElementById('firmar_psw_input');
+
         // SCREENS
         let screen_1 = document.getElementById('screen_1');
         let screen_2 = document.getElementById('screen_2');
         let screen_3 = document.getElementById('screen_3');
+        let screen_4 = document.getElementById('screen_4');
+        let screen_5 = document.getElementById('screen_5');
 
         // BUTTONS AND CALLS TO ACTION
         let ejecutar_1 = document.getElementById('ejecutar_button_1');
-        ejecutar_1.addEventListener('click', runSelectedActions);
+        ejecutar_1.addEventListener('click', showWorkingScreen);
 
         let download_button = document.getElementById('download_button');
         download_button.addEventListener('click', downloadAvailableFiles);
 
         let boton_aceptar = document.getElementById('accept_button');
         boton_aceptar.addEventListener('click', resetPage);
+
+        let boton_aceptar_2 = document.getElementById('accept_button_2');
+        boton_aceptar_2.addEventListener('click', showScreen1);
+
+        function showWorkingScreen(){
+            console.log('Show working...')
+            hideAllScreens();
+            screen_5.style.display = 'block';
+            setTimeout(runSelectedActions, 500);
+        }
 
         function runSelectedActions(){
             let porcess_result = executeActions_1();
@@ -166,9 +198,10 @@
                 showScreen2();
             }else if(porcess_result==-1){
                 console.log('caller: password incorrecto');
+                showScreen3();
             }else{
                 console.log('caller: error desconocido');
-                showScreen3();
+                showScreen4();
             }
         }
 
@@ -176,6 +209,13 @@
             screen_1.style.display = 'none';
             screen_2.style.display = 'none';
             screen_3.style.display = 'none';
+            screen_4.style.display = 'none';
+            screen_5.style.display = 'none';
+        }
+
+        function showScreen1(){
+            hideAllScreens();
+            screen_1.style.display = 'block';
         }
 
         function showScreen2(){
@@ -186,6 +226,12 @@
         function showScreen3(){
             hideAllScreens();
             screen_3.style.display = 'block';
+        }
+
+        function showScreen4(){
+            console.log('show 4');
+            hideAllScreens();
+            screen_4.style.display = 'block';
         }
 
         // FUNCTIONS
@@ -199,10 +245,14 @@
                 downloadTextFile(file_str, full_file_name + '.enc+sig')
 
             }else if(signature_hex.length > 0){
+
+                console.log('descargando archivo de firma');
                 let file_name = full_file_name.split('.')[0];
                 downloadTextFile(signature_hex, file_name + '.sig')
 
             }else if(encrypted_hex.length > 0){
+
+                console.log('descargando archivo cifrado');
                 let substrings = full_file_name.split('.');
                 let file_name = substrings[0];
                 let file_extension = substrings[1];
@@ -211,7 +261,6 @@
 
             }else{
                 console.log('No hay archivos disponibles')
-
             }
 
             //move back to main
@@ -222,10 +271,9 @@
             window.location.href="cifrar.html";
         }
 
+    </script>
 
-
-        var psw_input = document.getElementById('firmar_psw_input');
-        
+    <script type="text/javascript">
         window.onload=function()  //executes when the page finishes loading
         {
             setTimeout(func1, 65);  //sets a timer which calls function func1 after 2,000 milliseconds = 2 secs.

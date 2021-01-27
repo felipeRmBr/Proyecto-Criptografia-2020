@@ -94,6 +94,7 @@ input[type=text]:focus, input[type=password]:focus {
 }
 
 .signin{
+  font-size: 15px;
   background-color: #e5edf1;
   text-align: center;
 }

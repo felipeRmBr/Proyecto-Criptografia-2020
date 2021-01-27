@@ -1,3 +1,5 @@
+var caller = 'UNDEFINED'
+
 var iniciar_option = document.getElementById('iniciar_diffie_option');
 var continuar_option = document.getElementById('continuar_diffie_option');
 
@@ -19,8 +21,6 @@ var diffie_s3 = document.getElementById('diffie_s3');
 var diffie_s4 = document.getElementById('diffie_s4');
 var diffie_s5 = document.getElementById('diffie_s5');
 var diffie_s5_2 = document.getElementById('diffie_s5_2');
-
-var caller = 'UNDEFINED'
 
 iniciar_option.addEventListener('click', showScreen2);
 continuar_option.addEventListener('click', showScreen3);
@@ -61,14 +61,17 @@ function showScreen3(){
 }
 
 function showScreen4(){
+    // Recibí un archivo .share
+    caller = 'B'; // Bob
     //inicializa el valor del exponete
     initializeExponent();
-    caller = 'B'
     hideAllScreens();
     diffie_s4.style.display='block';
 }
 
 function showScreen5(){
+    // Recibí un archivo .dh2
+    caller = 'A'; // Allice
     hideAllScreens();
     diffie_s5.style.display='block';
 }
@@ -105,9 +108,8 @@ function initializeExponent(){
   });
 }
 
-
 function startProgram(){
-  console.log('Hello iam alive')
+  console.log('Iniciando DH')
 
   var state_base = 0;
   var state_modulo = 0;
@@ -146,11 +148,10 @@ function startProgram(){
         executePhase2();
     }
   });
-
 }
 
 function executePhase2(){
-    console.log('VARIABLES LISTAS, PREPARANDO DESCARGA')
+    console.log('PREPARANDO DESCARGA')
 
     base_dh = bigInt(base_dh_str);
     modulo_dh = bigInt(modulo_dh_str)
@@ -163,8 +164,8 @@ function executePhase2(){
     console.log('public_A', public_A_dh_str); 
 
     var share_str = base_dh_str + 'SEPARATOR_TAG' + modulo_dh_str + 'SEPARATOR_TAG' + public_A_dh_str;
-    downloadTextFile(share_str, 'diffie_hellman.share.txt');
-    downloadTextFile(exponent_dh_str, 'diffie_hellman.keep.txt');
+    downloadTextFile(share_str, 'diffie_hellman.share');
+    downloadTextFile(exponent_dh_str, 'diffie_hellman.keep');
 
     showScreen2_2();
 }
@@ -193,7 +194,7 @@ function computeSharedSecret(){
   var key = shared_secret.toString(16).slice(0, 16);
   console.log('shared_key: ', key);
 
-  downloadTextFile(key, 'shared_secret.key.txt');
+  downloadTextFile(key, 'shared_secret.key');
 
   if(caller=='B'){
     //generate and download public_B 
@@ -211,7 +212,7 @@ function computeSharedSecret(){
 
     dh_variables_str = base_dh_str + 'SEPARATOR_TAG' + modulo_dh_str + 'SEPARATOR_TAG' + local_public_result_str;
 
-    downloadTextFile(dh_variables_str, 'diffie_hellman.dh2.txt');
+    downloadTextFile(dh_variables_str, 'diffie_hellman.dh2');
   }
 
   showScreenSucces()

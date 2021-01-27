@@ -20,16 +20,22 @@ var verification_resutl = false;
 
 function executeActions_1(){
     if(firmar_check_state==1 && cifrar_check_state==-1){
+
         console.log('FIRMANDO EL DOCUMENTO');
 
         try {
             let password = psw_input.value;
+
+            if(password==''){
+                return -1;
+            }
+            
             if(decryptPrivKey(encr_priv_key_hex, password)){
                 console.log('Password correcto. Firmando.')
                 signature_hex = signDocumet(doc_content);
                 return 1;
             }else{
-                alert('Password incorrecto. Vuelve a intentarlo.')
+                // alert('Password incorrecto. Vuelve a intentarlo.')
                 return -1;
             }
         } catch (error) {
@@ -42,6 +48,7 @@ function executeActions_1(){
 
 
     }else if(firmar_check_state==-1 && cifrar_check_state==1){
+
         console.log('CIFRANDO EL DOCUMENTO');
 
         try {
@@ -75,12 +82,17 @@ function executeActions_1(){
         /*****TRY FIRMA*******/
         try {
             let password = psw_input.value;
+
+            if(password==''){
+                return -1;
+            }
+
             if(decryptPrivKey(encr_priv_key_hex, password)){
                 console.log('Password correcto. Firmando.')
                 signature_hex = signDocumet(doc_content);
                 process_1_result = 1;
             }else{
-                alert('Password incorrecto. Vuelve a intentarlo.')
+                // alert('Password incorrecto. Vuelve a intentarlo.')
                 return -1;
             }
         } catch (error) {
@@ -279,6 +291,7 @@ function decryptPrivKey(encr_priv_key_hex, password){
       }else{
         console.log('invalid private_key');
         return false; 
+
       }
 
 }
